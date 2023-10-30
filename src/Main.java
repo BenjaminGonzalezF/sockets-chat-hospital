@@ -1,4 +1,3 @@
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +7,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/vistaMedicos.fxml"));
+        loader.setController(new controladores.controladorVistaMedicos());
         Parent root = loader.load();
-        Controller controller = loader.getController();
-        controller.setMainWindow(primaryStage);
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 800));
+        primaryStage.setTitle("Vista Medico");
+        primaryStage.setScene(new Scene(root, 1120, 700));
         primaryStage.show();
     }
 
