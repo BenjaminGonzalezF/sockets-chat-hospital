@@ -27,8 +27,9 @@ public class ControladorVistaMedicos {
     }
 //Actualiza la interfaz desde el hilo de recibir datos
 public void actualizarMensajes(String mensaje) {
+    contenidoHTML += mensaje;
     Platform.runLater(() -> {
-        mensajes.getEngine().loadContent(mensaje);
+        mensajes.getEngine().loadContent(contenidoHTML);
     });
 }
     public String getMensajes(){
@@ -46,6 +47,7 @@ public void actualizarMensajes(String mensaje) {
     @FXML
     private void enviarMensaje(){
         EnviarDatos enviarDatos = new EnviarDatos(socket,getMensajeAEnviar(), usuario);
+        mensajeAEnviar.setHtmlText("");
     }
     
 
