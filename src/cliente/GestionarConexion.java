@@ -1,16 +1,10 @@
 package cliente;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.List;
-
 import controladores.ControladorVistaMedicos;
-import javafx.scene.control.TextArea;
         
 public class GestionarConexion {
 
@@ -27,7 +21,11 @@ public class GestionarConexion {
             try{
                 dataInput = new DataInputStream(socket.getInputStream());
                 dataOutput = new DataOutputStream(socket.getOutputStream());
-    
+
+                //Se envia el rol del usuario al servidor
+                EnviarDatos enviarDatos = new EnviarDatos(socket, "medico", "Medico1");
+
+
                 Thread hiloActulizadorDatos = new Thread(new RecibirDatos(socket, controlador));
                 hiloActulizadorDatos.start();
             } catch (Exception e){
