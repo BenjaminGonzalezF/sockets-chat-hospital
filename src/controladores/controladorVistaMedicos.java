@@ -11,7 +11,7 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-public class ControladorVistaMedicos {
+public class controladorVistaMedicos {
     
     private Stage mainWindow;
     private Socket socket;

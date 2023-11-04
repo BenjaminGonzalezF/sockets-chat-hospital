@@ -5,14 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import controladores.ControladorVistaMedicos;
+import controladores.controladorVistaMedicos;
 import java.io.IOException;
 import java.net.Socket;
 
 public class ClienteChat extends Application {
     private String username = "";
     private Socket socket;
-    private ControladorVistaMedicos controlador;
+    private controladorVistaMedicos controlador;
     private GestionarConexion gestionarConexion;
     
     @Override

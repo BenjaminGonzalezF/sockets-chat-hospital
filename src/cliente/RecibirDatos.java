@@ -1,6 +1,6 @@
 package cliente;
 
-import controladores.ControladorVistaMedicos;
+import controladores.controladorVistaMedicos;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -8,13 +8,13 @@ import java.net.Socket;
 public class RecibirDatos implements Runnable {
 
     private Socket socket;
-    private ControladorVistaMedicos controlador;
+    private controladorVistaMedicos controlador;
     private Boolean conectado = true;
     private DataInputStream entradaDatos;
 
     
 
-    public RecibirDatos(Socket socket, ControladorVistaMedicos controlador) {
+    public RecibirDatos(Socket socket, controladorVistaMedicos controlador) {
         this.socket = socket;
         this.controlador = controlador;
         System.out.println("Se creo el hilo de recibir datos");

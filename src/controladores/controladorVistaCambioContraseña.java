@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
 
-public class ControladorVistaCambioContrasena {
+public class controladorVistaCambioContraseña {
 
     @FXML
     private PasswordField campoNuevaContrasena;
@@ -19,9 +19,10 @@ public class ControladorVistaCambioContrasena {
     @FXML
     private Label mensajeError;
 
-    private ControladorVistaLogin controladorVistaLogin;
+    private controladorVistaLogin controladorVistaLogin;
 
-    public void setControladorVistaLogin(ControladorVistaLogin controladorVistaLogin) {
+
+    public void setControladorVistaLogin(controladorVistaLogin controladorVistaLogin) {
         this.controladorVistaLogin = controladorVistaLogin;
     }
 
@@ -42,7 +43,7 @@ public class ControladorVistaCambioContrasena {
 
     private void volverAVistaLogin() {
         // Vuelve a la vista de login
-        controladorVistaLogin.inicializarVista();
+        controladorVistaLogin.initialize();
     }
 }
 

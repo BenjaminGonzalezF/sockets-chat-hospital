@@ -1,6 +1,6 @@
 package cliente;
 
-import controladores.ControladorVistaMedicos;
+import controladores.controladorVistaMedicos;
 import javafx.event.ActionEvent;
 
 import java.io.DataInputStream;

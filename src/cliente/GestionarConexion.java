@@ -4,18 +4,18 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import controladores.ControladorVistaMedicos;
+import controladores.controladorVistaMedicos;
         
 public class GestionarConexion {
 
         private DataInputStream dataInput;
         private DataOutputStream dataOutput;
-        private ControladorVistaMedicos controlador;
+        private controladorVistaMedicos controlador;
         private ObjectInputStream obtenerUsuariosOnline;
         private Socket socket;
         private Boolean conectado;
     
-        public GestionarConexion(Socket socket, ControladorVistaMedicos controlador){
+        public GestionarConexion(Socket socket, controladorVistaMedicos controlador){
             this.controlador = controlador;
 
             try{

@@ -1,10 +1,12 @@
 package controladores;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
-public class ControladorVistaAdministrativo {
+public class controladorVistaAdministrativo {
     @FXML
     private WebView mensajes;
 
