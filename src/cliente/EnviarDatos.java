@@ -15,12 +15,12 @@ public class EnviarDatos {
     private String usuario;
     private String mensaje;
 
-    public EnviarDatos(Socket socket, String mensaje, String usuario){
+    public EnviarDatos(Socket socket, String mensaje, String usuario) {
         this.socket = socket;
         this.mensaje = mensaje;
         this.usuario = usuario;
 
-         try {
+        try {
             this.dataOutput = new DataOutputStream(socket.getOutputStream());
             enviar();
         } catch (IOException ex) {
@@ -32,18 +32,15 @@ public class EnviarDatos {
 
     public void enviar() {
         try {
-            //dataOutput.writeUTF(usuario + ": " + mensaje );
+            // dataOutput.writeUTF(usuario + ": " + mensaje );
             dataOutput.writeUTF(mensaje);
 
             System.out.println("Se envio el mensaje: " + mensaje);
-            
+
         } catch (IOException ex) {
             System.out.println("Error al intentar enviar un mensaje: " + ex.getMessage());
         }
-    
+
     }
 
-
-
-    
 }

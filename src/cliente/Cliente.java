@@ -9,6 +9,8 @@ public class Cliente {
     private Socket socketConAuxiliares;
     private Socket socketConExamenes;
     private Socket socketConPabellon;
+    private Socket setSocketConAdmision;
+
     private String rol;
 
     public Cliente(String nombre, Socket socket, String rol) {
@@ -20,6 +22,14 @@ public class Cliente {
     // Getters y Setters
     public String getNombre() {
         return nombre;
+    }
+
+    public Socket getSocketConAdmision() {
+        return this.setSocketConAdmision;
+    }
+
+    public void setSocketConAdmision(Socket setSocketConAdmision) {
+        this.setSocketConAdmision = setSocketConAdmision;
     }
 
     public void setNombre(String nombre) {

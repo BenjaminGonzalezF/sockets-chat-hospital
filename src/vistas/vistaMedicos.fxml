@@ -25,10 +25,10 @@
          <top>
             <Pane prefHeight="139.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Medico" />
-                  <Button layoutX="147.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Auxiliares" />
-                  <Button layoutX="294.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Exámenes" />
-                  <Button layoutX="441.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Admision" />
+                  <Button fx:id="btnSalaMedicos" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaMedicos" prefHeight="63.0" prefWidth="147.0" text="Medico" />
+                  <Button fx:id="btnSalaAuxiliares" layoutX="147.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAuxiliares" prefHeight="63.0" prefWidth="147.0" text="Auxiliares" />
+                  <Button fx:id="btnSalaExamenes" layoutX="294.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaExamenes" prefHeight="63.0" prefWidth="147.0" text="Exámenes" />
+                  <Button fx:id="btnSalaAdmision" layoutX="441.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAdmision" prefHeight="63.0" prefWidth="147.0" text="Admision" />
                   <Circle fill="DODGERBLUE" layoutX="884.0" layoutY="73.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label layoutX="1007.0" layoutY="28.0" text="Usuario" />
                   <Button layoutX="950.0" layoutY="73.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="155.0" text="Salir" />

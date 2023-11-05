@@ -11,19 +11,20 @@ public class RecibirDatos implements Runnable {
     private ControladorVistaMedicos controlador;
     private Boolean conectado = true;
     private DataInputStream entradaDatos;
+    private String salaActual;
 
-    
+    private String mensajes = "";
 
-    public RecibirDatos(Socket socket, ControladorVistaMedicos controlador) {
+    public RecibirDatos(Socket socket, ControladorVistaMedicos controlador, String salaActual) {
         this.socket = socket;
         this.controlador = controlador;
-        System.out.println("Se creo el hilo de recibir datos");
+        this.salaActual = salaActual;
     }
 
     public void recibirMensajesServidor() {
         // Obtiene el flujo de entrada del socket
         String mensaje;
-        System.out.println("Listo para recibir mensajes");
+        System.out.println(salaActual + ": Ojos abiertos");
         try {
             entradaDatos = new DataInputStream(socket.getInputStream());
         } catch (IOException ex) {
@@ -35,8 +36,12 @@ public class RecibirDatos implements Runnable {
         while (conectado) {
             try {
                 mensaje = entradaDatos.readUTF();
-                System.out.println("Ha llegado el " +mensaje);
-                controlador.actualizarMensajes(mensaje);
+                System.out.println(salaActual + ": " + mensaje);
+                mensajes += mensaje + "\n";
+
+                if (salaActual == controlador.getSalaActual()) {
+                    controlador.actualizarMensajes(mensajes);
+                }
 
             } catch (IOException ex) {
                 System.out.println("Error al leer del stream de entrada: " + ex.getMessage());
@@ -52,6 +57,14 @@ public class RecibirDatos implements Runnable {
     public void run() {
         recibirMensajesServidor();
         throw new UnsupportedOperationException("Unimplemented method 'run'");
+    }
+
+    public String getMensajes() {
+        return this.mensajes;
+    }
+
+    public void setMensajes(String mensajes) {
+        this.mensajes = mensajes;
     }
 
 }
