@@ -1,11 +1,9 @@
-package cliente.conexion_salas;
+package cliente;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import cliente.Cliente;
-import cliente.RecibirDatos;
 import controladores.ControladorVistaMedicos;
 
 public class ConexionSalas {
@@ -25,7 +23,6 @@ public class ConexionSalas {
     }
 
     private void conectarASalas() {
-        String nombreSala;
         switch (cliente.getRol()) {
             case "Medico":
                 conectarConSala("localhost", PUERTO_MEDICOS, "salaMedicos");
@@ -77,7 +74,6 @@ public class ConexionSalas {
             return;
         }
         if (socket.getPort() == PUERTO_AUXILIARES) {
-            System.out.println("Asignando socket a auxiliares");
             cliente.setSocketConAuxiliares(socket);
             return;
         }

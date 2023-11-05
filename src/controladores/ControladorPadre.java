@@ -1,10 +1,11 @@
 package controladores;
 
 import java.net.Socket;
+import java.util.ArrayList;
 
 import cliente.Cliente;
+import cliente.ConexionSalas;
 import cliente.EnviarDatos;
-import cliente.conexion_salas.ConexionSalas;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

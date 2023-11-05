@@ -38,7 +38,7 @@ public class RecibirDatos implements Runnable {
                 mensaje = entradaDatos.readUTF();
                 System.out.println(salaActual + ": " + mensaje);
                 mensajes += mensaje + "\n";
-
+                // Muestra los mensajes solo si se encuentra en la sala correspondiente
                 if (salaActual == controlador.getSalaActual()) {
                     controlador.actualizarMensajes(mensajes);
                 }

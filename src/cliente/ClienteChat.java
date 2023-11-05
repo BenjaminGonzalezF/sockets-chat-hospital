@@ -14,7 +14,8 @@ public class ClienteChat extends Application {
     private Socket socket;
     private ControladorVistaMedicos controlador;
     private GestionarConexion gestionarConexion;
-    
+    private GestionClientes gestionClientes;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/vistaMedicos.fxml"));
@@ -23,7 +24,7 @@ public class ClienteChat extends Application {
         primaryStage.setTitle("Vista Medico");
         primaryStage.setScene(new Scene(root, 1120, 700));
         primaryStage.show();
-    
+
         iniciar();
     }
 
@@ -31,8 +32,9 @@ public class ClienteChat extends Application {
         try {
             socket = new Socket("localhost", 5000);
             controlador.setSocket(socket);
+            gestionClientes = new GestionClientes();
             gestionarConexion = new GestionarConexion(socket, controlador);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,6 +43,5 @@ public class ClienteChat extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 
 }

@@ -2,6 +2,7 @@ package servidor;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import servidor.sockets_salas.SocketAuxiliares;
 import servidor.sockets_salas.SocketExamenes;
 import servidor.sockets_salas.SocketMedicos;
 import servidor.sockets_salas.SocketPabellon;
+import servidor.sockets_salas.SocketPrivado;
 
 public class Servidor {
     private int puerto = 5000;
@@ -22,6 +24,7 @@ public class Servidor {
     private GestionMensajes salaExamenes = new GestionMensajes();
     private GestionMensajes salaPabellon = new GestionMensajes();
     private GestionMensajes salaAdmision = new GestionMensajes();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
     private void iniciarServidor() {
 
@@ -49,9 +52,9 @@ public class Servidor {
                 System.out.println("Servidor a la espera de conexiones.");
                 socketCliente = servidor.accept();
                 System.out.println("Cliente con la IP " + socketCliente.getInetAddress().getHostName() + " conectado.");
-
-                String rol = obtenerRol(socketCliente);
-                Cliente cliente = new Cliente("nombre", socketCliente, rol);
+                Cliente cliente = obtenerCliente(socketCliente);
+                clientes.add(cliente);
+                System.out.println("Cantidad de clientes: " + clientes.size());
 
             }
         } catch (IOException ex) {
@@ -77,6 +80,20 @@ public class Servidor {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Cliente obtenerCliente(Socket socketCliente) {
+
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(socketCliente.getInputStream());
+            Cliente cliente = (Cliente) objectInputStream.readObject();
+            System.out.println("HEMOS RECIBIDO UN CLIENTEE " + cliente.getNombre());
+            return cliente;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Error al obtener el cliente");
         }
         return null;
     }
@@ -108,6 +125,12 @@ public class Servidor {
             conexionCliente.start();
         }
 
+    }
+
+    public void conectarClientecon(Socket socket, GestionMensajes gestorMensajes) {
+        ConexionCliente conexionCliente = new ConexionCliente(socket, gestorMensajes);
+        gestorMensajes.agregarObservador(conexionCliente);
+        conexionCliente.start();
     }
 
     public static void main(String[] args) {
