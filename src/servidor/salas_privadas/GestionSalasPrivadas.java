@@ -1,4 +1,4 @@
-package servidor.sockets_salas;
+package servidor.salas_privadas;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import servidor.ConexionCliente;
 import servidor.GestionMensajes;
 import servidor.Servidor;
+import servidor.sockets_salas.SocketPrivado;
 
 public class GestionSalasPrivadas {
     private ArrayList<GestionMensajes> SalasPrivadas = new ArrayList<GestionMensajes>();

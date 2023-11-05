@@ -1,6 +1,8 @@
 package servidor.sockets_salas;
 
 import servidor.Servidor;
+import servidor.salas_privadas.GestionSalasPrivadas;
+
 import java.net.Socket;
 
 public class SocketPrivado extends SalaSocket {

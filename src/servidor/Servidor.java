@@ -24,13 +24,13 @@ public class Servidor {
     private GestionMensajes salaExamenes = new GestionMensajes();
     private GestionMensajes salaPabellon = new GestionMensajes();
     private GestionMensajes salaAdmision = new GestionMensajes();
-    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+
+    RegistroClientes registroClientes = new RegistroClientes();
 
     private void iniciarServidor() {
 
         ServerSocket servidor = null;
         Socket socketCliente = null;
-
         SocketMedicos socketMedicos = new SocketMedicos(this);
         SocketAuxiliares socketAuxiliares = new SocketAuxiliares(this);
         SocketExamenes socketExamenes = new SocketExamenes(this);
@@ -48,14 +48,16 @@ public class Servidor {
             servidor = new ServerSocket(puerto);
 
             // Bucle infinito para esperar conexiones
+            System.out.println("Servidor a la espera de conexiones.");
             while (true) {
-                System.out.println("Servidor a la espera de conexiones.");
                 socketCliente = servidor.accept();
-                System.out.println("Cliente con la IP " + socketCliente.getInetAddress().getHostName() + " conectado.");
                 Cliente cliente = obtenerCliente(socketCliente);
-                clientes.add(cliente);
-                System.out.println("Cantidad de clientes: " + clientes.size());
-
+                registroClientes.agregarCliente(cliente, socketCliente);
+                System.out.println("Cliente conectado: " + cliente.getNombre());
+                System.out.println("Cantidad de clientes: " + registroClientes.getCantidadClientes());
+                // ComprobarConexion comprobarConexion = new ComprobarConexion(socketCliente,
+                // cliente, registroClientes);
+                // comprobarConexion.start();
             }
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -70,22 +72,19 @@ public class Servidor {
 
     }
 
-    public String obtenerRol(Socket socketCliente) {
+    public String obtenerMensajes(Socket socketCliente) {
         DataInputStream entradaDatos;
         try {
             entradaDatos = new DataInputStream(socketCliente.getInputStream());
-            String rol = entradaDatos.readUTF();
-            System.out.println("El rol es: " + rol);
-            return rol;
+            String mensaje = entradaDatos.readUTF();
+            return mensaje;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
     }
 
     public Cliente obtenerCliente(Socket socketCliente) {
-
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(socketCliente.getInputStream());
             Cliente cliente = (Cliente) objectInputStream.readObject();

@@ -27,12 +27,8 @@ public class GestionarConexion {
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
 
-            // Se envia el rol del usuario al servidor
             Cliente cliente = crearCliente();
             controlador.setCliente(cliente);
-
-            // EnviarDatos enviarDatos = new EnviarDatos(socket, cliente.getRol(),
-            // "Medico1");
 
             Thread hiloActulizadorDatos = new Thread(new RecibirDatos(socket, controlador, "salaTodos"));
             hiloActulizadorDatos.start();
