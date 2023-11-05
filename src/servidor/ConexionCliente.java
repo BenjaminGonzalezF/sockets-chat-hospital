@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-
+//Hilo que recibe los mensajes de un cliente y se lo reenvia a todos los clientes suscritos a la sala
 public class ConexionCliente extends Thread implements Observador {
 
     private Socket socket;

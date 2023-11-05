@@ -66,4 +66,10 @@ public class ControladorVistaLogin {
             e.printStackTrace();
         }
     }
+     public void inicializarVista() {
+        // Lógica para inicializar la vista
+        campoUsuario.setText("");
+        campoContrasena.setText("");
+        mensajeError.setVisible(false);
+     }
 }

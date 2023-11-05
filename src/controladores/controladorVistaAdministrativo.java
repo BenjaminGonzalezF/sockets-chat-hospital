@@ -14,7 +14,7 @@ public class ControladorVistaAdministrativo {
     @FXML
     private Button btnEnviarMensaje;
 
-    @FXML
+    /* @FXML
     private ChoiceBox<String> tipoAdministrativo; // Agregar ChoiceBox para seleccionar el tipo de administrativo
 
     @FXML
@@ -23,7 +23,7 @@ public class ControladorVistaAdministrativo {
         tipoAdministrativo.getItems().addAll("Admisión", "Pabellón", "Exámenes", "Auxiliar");
         tipoAdministrativo.setValue("Admisión"); // Establece el tipo por defecto
         cargarConversacion(); // Carga la conversación inicial
-    }
+    } */
 
     @FXML
     private void enviarMensaje() {
@@ -45,7 +45,7 @@ public class ControladorVistaAdministrativo {
 
     private void cargarConversacion() {
         // Lógica para cargar la conversación basada en el tipo de administrativo seleccionado
-        String tipoSeleccionado = tipoAdministrativo.getValue();
+        //String tipoSeleccionado = tipoAdministrativo.getValue();
         // Por ejemplo, puedes cargar conversaciones diferentes desde aquí
     }
 

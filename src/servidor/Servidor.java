@@ -7,23 +7,40 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import cliente.Cliente;
+import servidor.sockets_salas.SocketAuxiliares;
+import servidor.sockets_salas.SocketExamenes;
+import servidor.sockets_salas.SocketMedicos;
+import servidor.sockets_salas.SocketPabellon;
+
 public class Servidor {
     private int puerto = 5000;
+
+    private GestionSalas gestionSalas = new GestionSalas();
+
     private GestionMensajes salaMedicos = new GestionMensajes();
     private GestionMensajes salaAuxiliares = new GestionMensajes();
-
+    private GestionMensajes salaExamenes = new GestionMensajes();
+    private GestionMensajes salaPabellon = new GestionMensajes();
 
     private void iniciarServidor() {
- 
-        ServerSocket servidor = null; 
-        Socket socketCliente = null;
-        GestionMensajes gestionMensajes = new GestionMensajes();
 
-        
+        ServerSocket servidor = null;
+        Socket socketCliente = null;
+        SocketMedicos socketMedicos = new SocketMedicos(this);
+        SocketAuxiliares socketAuxiliares = new SocketAuxiliares(this);
+        SocketExamenes salaExamenes = new SocketExamenes(this);
+        SocketPabellon salaPabellon = new SocketPabellon(this);
+
+        socketMedicos.start();
+        socketAuxiliares.start();
+        salaExamenes.start();
+        salaPabellon.start();
+
         try {
             // Se crea el serverSocket
             servidor = new ServerSocket(puerto);
-            
+
             // Bucle infinito para esperar conexiones
             while (true) {
                 System.out.println("Servidor a la espera de conexiones.");
@@ -31,26 +48,12 @@ public class Servidor {
                 System.out.println("Cliente con la IP " + socketCliente.getInetAddress().getHostName() + " conectado.");
 
                 String rol = obtenerRol(socketCliente);
+                Cliente cliente = new Cliente("nombre", socketCliente, rol);
 
-                if(rol.equals("medico")){
-                    gestionMensajes = salaMedicos;
-                    System.out.println("Se conecto un medico");
-                }
-                else if(rol.equals("auxiliar")){
-                    gestionMensajes = salaAuxiliares;
-                    System.out.println("Se conecto un auxiliar");
-                }
-                
-                ConexionCliente cc = new ConexionCliente(socketCliente, gestionMensajes);
-
-                // Se añade el cliente a la lista de clientes
-                gestionMensajes.agregarObservador(cc);
-                cc.start();
-                
             }
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
-        } finally{
+        } finally {
             try {
                 socketCliente.close();
                 servidor.close();
@@ -58,10 +61,10 @@ public class Servidor {
                 System.out.println("Error al cerrar el servidor: " + ex.getMessage());
             }
         }
-        
+
     }
-    
-    private String obtenerRol(Socket socketCliente){
+
+    public String obtenerRol(Socket socketCliente) {
         DataInputStream entradaDatos;
         try {
             entradaDatos = new DataInputStream(socketCliente.getInputStream());
@@ -73,7 +76,28 @@ public class Servidor {
             e.printStackTrace();
         }
         return null;
-        
+    }
+
+    public void conectarClientecon(Socket socket, String sala) {
+
+        if (sala.equals("salaMedicos")) {
+            ConexionCliente conexionCliente = new ConexionCliente(socket, salaMedicos);
+            salaMedicos.agregarObservador(conexionCliente);
+            conexionCliente.start();
+
+        } else if (sala.equals("salaAuxiliares")) {
+            ConexionCliente conexionCliente = new ConexionCliente(socket, salaAuxiliares);
+            salaAuxiliares.agregarObservador(conexionCliente);
+            conexionCliente.start();
+        } else if (sala.equals("salaExamenes")) {
+            ConexionCliente conexionCliente = new ConexionCliente(socket, salaExamenes);
+            salaExamenes.agregarObservador(conexionCliente);
+            conexionCliente.start();
+        } else if (sala.equals("salaPabellon")) {
+            ConexionCliente conexionCliente = new ConexionCliente(socket, salaPabellon);
+            salaPabellon.agregarObservador(conexionCliente);
+            conexionCliente.start();
+        }
     }
 
     public static void main(String[] args) {
@@ -82,4 +106,3 @@ public class Servidor {
     }
 
 }
-

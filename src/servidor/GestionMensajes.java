@@ -6,6 +6,7 @@ import servidor.ConexionCliente;
 
 public class GestionMensajes {
     private String mensaje;
+    private String nombreSala;
 
     private List<ConexionCliente> observadores = new ArrayList<>();
 
