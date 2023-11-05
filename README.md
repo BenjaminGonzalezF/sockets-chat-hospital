@@ -14,3 +14,11 @@ scene builder : https://gluonhq.com/products/scene-builder/#download
 -Se usaran las librerias de javafx que se encuentran en C:\Program Files\Java\javafx-sdk-21.0.1\lib
 -Asegurarse de la correcta instalacion de las librerias. Dentro del IDE, en el apartado de JAVA PROJECTS -> Referenced Libraries
 Deben estar los archivos de C:\Program Files\Java\javafx-sdk-21.0.1\lib.
+
+
+Roles: 
+-Pabellon
+-Examenes
+-Auxiliar
+-Medico
+-Admision

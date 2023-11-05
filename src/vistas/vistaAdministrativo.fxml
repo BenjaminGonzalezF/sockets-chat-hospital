@@ -3,15 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.web.HTMLEditor?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ControladorVistaAdministrativo">
    <children>
       <BorderPane prefHeight="698.0" prefWidth="1127.0">
          <right>
@@ -24,34 +24,30 @@
          <top>
             <Pane prefHeight="139.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Medico" />
-                  <Button layoutX="147.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Todos" />
+                  <Button layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Pabellon" />
+                  <Button layoutX="147.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Auxiliares" />
                   <Button layoutX="294.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Exámenes" />
                   <Button layoutX="441.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Admision" />
-                  <Button layoutX="588.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Auxiliares" />
                   <Circle fill="DODGERBLUE" layoutX="884.0" layoutY="73.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Label layoutX="1007.0" layoutY="28.0" text="Usuario" />
-                  <Button layoutX="950.0" layoutY="73.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="155.0" text="Salir" />
+                  <Label layoutX="864.0" layoutY="61.0" text="Usuario" />
+                  <Button layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
                </children>
             </Pane>
          </top>
          <center>
-            <ScrollPane prefHeight="294.0" prefWidth="857.0" BorderPane.alignment="CENTER" />
+            <ScrollPane prefHeight="294.0" prefWidth="857.0" BorderPane.alignment="CENTER">
+               <content>
+                  <WebView fx:id="mensajes" prefHeight="384.0" prefWidth="878.0" />
+               </content></ScrollPane>
          </center>
          <bottom>
             <HBox prefHeight="174.0" prefWidth="926.0" BorderPane.alignment="CENTER">
                <children>
-                  <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="174.0" prefWidth="773.0" />
-                  <Pane prefHeight="174.0" prefWidth="119.0">
-                     <children>
-                        <Button layoutX="3.0" layoutY="57.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="110.0" text="Enviar" />
-                     </children>
-                  </Pane>
+                  <HTMLEditor fx:id="mensajeAEnviar" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="174.0" prefWidth="943.0" />
+                  <Pane prefHeight="174.0" prefWidth="119.0" />
                   <Pane prefHeight="174.0" prefWidth="246.0">
                      <children>
-                        <Button layoutX="87.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Enviar" />
-                        <Label layoutX="55.0" layoutY="27.0" text="Enviar Mensaje Directo a:" />
-                        <TextField layoutX="47.0" layoutY="62.0" />
+                        <Button id="btnEnviarMensaje" layoutY="57.0" mnemonicParsing="false" onAction="#enviarMensaje" prefHeight="60.0" prefWidth="110.0" text="Enviar" />
                      </children>
                   </Pane>
                </children>

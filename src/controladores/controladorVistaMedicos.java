@@ -1,12 +1,18 @@
 package controladores;
 
+import java.net.Socket;
+
+import cliente.Cliente;
+import cliente.EnviarDatos;
+import cliente.conexion_salas.ConexionSalas;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-public class controladorVistaMedicos {
-    
-    private Stage mainWindow;
+public class ControladorVistaMedicos extends ControladorPadre {
 
-    public void setMainWindow(Stage mainWindow) {
-            this.mainWindow = mainWindow;
-        }
 }
