@@ -39,7 +39,7 @@ public class ConexionCliente extends Thread implements Observador {
                 // a sus observadores que hay un nuevo mensaje.
                 mensajes.setMensaje(mensajeRecibido);
             } catch (IOException ex) {
-                System.out.println("Cliente con la IP " + socket.getInetAddress().getHostName() + " desconectado.");
+                System.out.println("Cliente desconectado de: " + socket.getLocalPort());
                 conectado = false;
                 // Cerrar la conexión en caso de algun error
                 try {

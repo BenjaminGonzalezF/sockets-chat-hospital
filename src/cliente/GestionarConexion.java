@@ -16,35 +16,33 @@ public class GestionarConexion {
     private ObjectInputStream obtenerUsuariosOnline;
 
     private Socket socket;
-    private Boolean conectado;
     private ConexionSalas gestionarSalas;
-    private int nClientes;
+    private GestionClientes gestionClientes = new GestionClientes();
 
     public GestionarConexion(Socket socket, ControladorVistaMedicos controlador) {
         this.controlador = controlador;
-
+        this.socket = socket;
         try {
             dataInput = new DataInputStream(socket.getInputStream());
             dataOutput = new DataOutputStream(socket.getOutputStream());
 
-            Cliente cliente = crearCliente();
+            
+            Cliente cliente = gestionClientes.crearCliente();
             controlador.setCliente(cliente);
-
-            Thread hiloActulizadorDatos = new Thread(new RecibirDatos(socket, controlador, "salaTodos"));
-            hiloActulizadorDatos.start();
+            controlador.setSocket(socket);
 
             EnviarDatos enviarCliente = new EnviarDatos(socket, cliente, "Medico1");
             gestionarSalas = new ConexionSalas(cliente, controlador);
+
+            ActualizarClientesOnline actualizarClientesOnline = new ActualizarClientesOnline(socket, controlador);
+            actualizarClientesOnline.start();
+            
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private Cliente crearCliente() {
-        nClientes++;
-        Cliente cliente = new Cliente("Cliente" + nClientes, socket, "Examenes");
-        return cliente;
-    }
 
 }

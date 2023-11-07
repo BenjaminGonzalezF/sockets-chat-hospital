@@ -1,5 +1,7 @@
 package servidor;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +11,60 @@ import cliente.Cliente;
 
 public class RegistroClientes {
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    private Map<Socket, Cliente> clienteSocketMap = new HashMap<>();
+    private Map<String, Socket> clienteSocketMap = new HashMap<>();
 
     public void agregarCliente(Cliente cliente, Socket socketCliente) {
         clientes.add(cliente);
-        clienteSocketMap.put(socketCliente, cliente);
+        clienteSocketMap.put(cliente.getNombre(), socketCliente);
+
+        System.out.println("Cliente conectado: " + cliente.getNombre());
+        System.out.println("Cantidad de clientes: " + clientes.size());
+        ComprobarConexion comprobarConexionCliente = new ComprobarConexion(socketCliente, cliente, this);
+        comprobarConexionCliente.start();
+        actualizarOnlineATodos();
     }
+
+    private void enviarClientesOnline(Socket socket, ArrayList<String> clientesOnline){
+        System.out.println("Enviando : " + clientesOnline.toString());
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(clientesOnline);
+            objectOutputStream.flush();
+            System.out.println("Se envio la lista de clientes conectados: " + clientesOnline);
+        } catch (IOException ex) {
+            System.out.println("Error al crear el stream de salida : " + ex.getMessage());
+        } catch (NullPointerException ex) {
+            System.out.println("El socket no se creo correctamente. " + ex.getMessage());
+        }
+    }
+
+
+
+    public void eliminarCliente(String nombre) { 
+        clientes.removeIf(cliente -> cliente.getNombre().equals(nombre));
+        clienteSocketMap.remove(nombre);
+        System.out.println("Eliminar" + nombre);
+        actualizarOnlineATodos();
+    }    
+
+    private void actualizarOnlineATodos(){
+        ArrayList<String> nombresClientes = new ArrayList<String>();
+        nombresClientes = getClientesConectados();
+        for (Cliente cliente : clientes) {
+            enviarClientesOnline(clienteSocketMap.get(cliente.getNombre()), nombresClientes);
+        }
+        
+    }
+
+
+    public ArrayList<String> getClientesConectados(){
+        ArrayList<String> nombresClientes = new ArrayList<String>();
+        for (Cliente cliente : clientes) {
+            nombresClientes.add(cliente.getNombre());
+        }
+        return nombresClientes;
+    }
+
 
     public ArrayList<Cliente> getClientes() {
         return this.clientes;
@@ -23,11 +73,6 @@ public class RegistroClientes {
     public int getCantidadClientes() {
         return clientes.size();
     }
-
-    public void eliminarCliente(Cliente cliente) {
-        clientes.remove(cliente);
-    }
-
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }

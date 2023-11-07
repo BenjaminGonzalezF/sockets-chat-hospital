@@ -9,6 +9,7 @@ import cliente.EnviarDatos;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
@@ -21,7 +22,8 @@ public class ControladorPadre {
     private String contenidoHTML = "";
     private String salaActual = "salaAuxiliares";
     private Cliente cliente;
-
+    @FXML 
+    private Label labelUsuariosOnline;
     @FXML
     private WebView mensajes;
     @FXML
@@ -93,6 +95,22 @@ public class ControladorPadre {
 
     }
 
+    public void  actualizarClientesOnline( ArrayList<String> usuariosOnline){
+        StringBuilder usuarios = new StringBuilder();
+
+        System.out.println("Actualizando clientes online");
+        for (String usuario : usuariosOnline) {
+            usuarios.append(usuario).append("\n");
+            System.out.println(usuario);
+        }
+        
+        String usuariosTexto = usuarios.toString();
+        
+        Platform.runLater(() -> {
+            this.labelUsuariosOnline.setText(usuariosTexto);
+        });
+    }
+
     public void setMainWindow(Stage mainWindow) {
         this.mainWindow = mainWindow;
     }
@@ -108,6 +126,7 @@ public class ControladorPadre {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
 
     public String getSalaActual() {
         return salaActual;

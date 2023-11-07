@@ -16,9 +16,8 @@ public class Cliente implements Serializable {
     private Socket setSocketConAdmision;
     private ArrayList<ConexionSalaPrivada> salasPrivadas = new ArrayList<ConexionSalaPrivada>();
 
-    public Cliente(String nombre, Socket socket, String rol) {
+    public Cliente(String nombre , String rol) {
         this.nombre = nombre;
-        this.socket = socket;
         this.rol = rol;
     }
 

@@ -3,6 +3,7 @@ package servidor;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -25,8 +26,7 @@ public class Servidor {
     private GestionMensajes salaPabellon = new GestionMensajes();
     private GestionMensajes salaAdmision = new GestionMensajes();
 
-    RegistroClientes registroClientes = new RegistroClientes();
-
+    
     private void iniciarServidor() {
 
         ServerSocket servidor = null;
@@ -36,7 +36,8 @@ public class Servidor {
         SocketExamenes socketExamenes = new SocketExamenes(this);
         SocketPabellon socketPabellon = new SocketPabellon(this);
         SocketAdmision socketAdmision = new SocketAdmision(this);
-
+        RegistroClientes registroClientes = new RegistroClientes();
+        
         socketMedicos.start();
         socketAuxiliares.start();
         socketExamenes.start();
@@ -46,43 +47,23 @@ public class Servidor {
         try {
             // Se crea el serverSocket
             servidor = new ServerSocket(puerto);
-
             // Bucle infinito para esperar conexiones
             System.out.println("Servidor a la espera de conexiones.");
             while (true) {
                 socketCliente = servidor.accept();
                 Cliente cliente = obtenerCliente(socketCliente);
                 registroClientes.agregarCliente(cliente, socketCliente);
-                System.out.println("Cliente conectado: " + cliente.getNombre());
-                System.out.println("Cantidad de clientes: " + registroClientes.getCantidadClientes());
-                // ComprobarConexion comprobarConexion = new ComprobarConexion(socketCliente,
-                // cliente, registroClientes);
-                // comprobarConexion.start();
+                
+
+
             }
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
-        } finally {
-            try {
-                socketCliente.close();
-                servidor.close();
-            } catch (IOException ex) {
-                System.out.println("Error al cerrar el servidor: " + ex.getMessage());
-            }
         }
+    
 
     }
 
-    public String obtenerMensajes(Socket socketCliente) {
-        DataInputStream entradaDatos;
-        try {
-            entradaDatos = new DataInputStream(socketCliente.getInputStream());
-            String mensaje = entradaDatos.readUTF();
-            return mensaje;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public Cliente obtenerCliente(Socket socketCliente) {
         try {

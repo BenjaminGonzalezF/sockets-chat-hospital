@@ -1,10 +1,12 @@
 package cliente;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import controladores.ControladorVistaMedicos;
 import java.io.IOException;
 import java.net.Socket;
@@ -24,6 +26,13 @@ public class ClienteChat extends Application {
         primaryStage.setTitle("Vista Medico");
         primaryStage.setScene(new Scene(root, 1120, 700));
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0); 
+            }
+        });
 
         iniciar();
     }
