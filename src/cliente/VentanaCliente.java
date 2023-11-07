@@ -11,11 +11,14 @@ import controladores.ControladorVistaMedicos;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClienteChat extends Application {
+import cliente.gestion_comunicacion_servidor.GestionarConexionPrincipal;
+import cliente.gestion_creacion_clientes.GestionClientes;
+
+public class VentanaCliente extends Application {
     private String username = "";
     private Socket socket;
     private ControladorVistaMedicos controlador;
-    private GestionarConexion gestionarConexion;
+    private GestionarConexionPrincipal gestionarConexion;
     private GestionClientes gestionClientes;
 
     @Override
@@ -42,7 +45,7 @@ public class ClienteChat extends Application {
             socket = new Socket("localhost", 5000);
             controlador.setSocket(socket);
             gestionClientes = new GestionClientes();
-            gestionarConexion = new GestionarConexion(socket, controlador);
+            gestionarConexion = new GestionarConexionPrincipal(socket, controlador);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package servidor;
+package servidor.gestion_clientes_online;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import cliente.Cliente;
+import cliente.gestion_creacion_clientes.Cliente;
 
-public class RegistroClientes {
+public class RegistroClientesOnline {
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private Map<String, Socket> clienteSocketMap = new HashMap<>();
 

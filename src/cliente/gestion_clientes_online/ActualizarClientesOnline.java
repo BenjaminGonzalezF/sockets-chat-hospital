@@ -1,4 +1,4 @@
-package cliente;
+package cliente.gestion_clientes_online;
 
 import controladores.ControladorVistaMedicos;
 

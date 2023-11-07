@@ -1,4 +1,4 @@
-package cliente;
+package cliente.gestion_comunicacion_servidor;
 
 import controladores.ControladorVistaMedicos;
 import javafx.event.ActionEvent;

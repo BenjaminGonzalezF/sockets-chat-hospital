@@ -1,9 +1,11 @@
-package cliente;
+package cliente.gestion_salas;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import cliente.gestion_comunicacion_servidor.RecibirDatos;
+import cliente.gestion_creacion_clientes.Cliente;
 import controladores.ControladorVistaMedicos;
 
 public class ConexionSalas {

@@ -9,7 +9,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import cliente.Cliente;
+import cliente.gestion_creacion_clientes.Cliente;
+import servidor.gestion_clientes_online.RegistroClientesOnline;
+import servidor.gestion_comunicacion_cliente.ConexionCliente;
+import servidor.gestion_comunicacion_cliente.GestionMensajes;
 import servidor.sockets_salas.SocketAdmision;
 import servidor.sockets_salas.SocketAuxiliares;
 import servidor.sockets_salas.SocketExamenes;
@@ -36,7 +39,7 @@ public class Servidor {
         SocketExamenes socketExamenes = new SocketExamenes(this);
         SocketPabellon socketPabellon = new SocketPabellon(this);
         SocketAdmision socketAdmision = new SocketAdmision(this);
-        RegistroClientes registroClientes = new RegistroClientes();
+        RegistroClientesOnline registroClientes = new RegistroClientesOnline();
         
         socketMedicos.start();
         socketAuxiliares.start();

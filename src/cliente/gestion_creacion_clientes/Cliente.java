@@ -1,8 +1,10 @@
-package cliente;
+package cliente.gestion_creacion_clientes;
 
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import cliente.gestion_salas.ConexionSalaPrivada;
 
 public class Cliente implements Serializable {
     private String nombre;

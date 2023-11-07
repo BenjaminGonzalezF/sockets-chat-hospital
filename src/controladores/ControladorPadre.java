@@ -1,16 +1,24 @@
 package controladores;
 
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-import cliente.Cliente;
-import cliente.ConexionSalas;
-import cliente.EnviarDatos;
+import cliente.gestion_clientes_online.UsuarioOnline;
+import cliente.gestion_comunicacion_servidor.EnviarDatos;
+import cliente.gestion_creacion_clientes.Cliente;
+import cliente.gestion_salas.ConexionSalas;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -22,8 +30,16 @@ public class ControladorPadre {
     private String contenidoHTML = "";
     private String salaActual = "salaAuxiliares";
     private Cliente cliente;
-    @FXML 
-    private Label labelUsuariosOnline;
+
+     @FXML
+  public void initialize() {
+    columnaUsuarios.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+  }
+  @FXML
+  private TableView<UsuarioOnline> tablaUsuariosOnline;
+  @FXML
+  private TableColumn<UsuarioOnline, String> columnaUsuarios;
+
     @FXML
     private WebView mensajes;
     @FXML
@@ -95,20 +111,34 @@ public class ControladorPadre {
 
     }
 
-    public void  actualizarClientesOnline( ArrayList<String> usuariosOnline){
-        StringBuilder usuarios = new StringBuilder();
+    /*
+     * public void actualizarClientesOnline(ArrayList<String> usuariosOnline) {
+     * StringBuilder usuarios = new StringBuilder();
+     * 
+     * System.out.println("Actualizando clientes online");
+     * for (String usuario : usuariosOnline) {
+     * usuarios.append(usuario).append("\n");
+     * System.out.println(usuario);
+     * }
+     * 
+     * String usuariosTexto = usuarios.toString();
+     * 
+     * Platform.runLater(() -> {
+     * this.tablaUsuariosOnline.set(usuariosTexto);
+     * });
+     * }
+     */
 
-        System.out.println("Actualizando clientes online");
+
+     public void actualizarClientesOnline(ArrayList<String> usuariosOnline) {
+        System.out.println("Actualizando clientes online" + usuariosOnline.toString());
+        ObservableList<UsuarioOnline> usuarios = FXCollections.observableArrayList();
+    
         for (String usuario : usuariosOnline) {
-            usuarios.append(usuario).append("\n");
-            System.out.println(usuario);
+            usuarios.add(new UsuarioOnline(usuario));
         }
-        
-        String usuariosTexto = usuarios.toString();
-        
-        Platform.runLater(() -> {
-            this.labelUsuariosOnline.setText(usuariosTexto);
-        });
+    
+        tablaUsuariosOnline.setItems(usuarios);
     }
 
     public void setMainWindow(Stage mainWindow) {
@@ -126,7 +156,6 @@ public class ControladorPadre {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
 
     public String getSalaActual() {
         return salaActual;

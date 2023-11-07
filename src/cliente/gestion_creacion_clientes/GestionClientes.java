@@ -1,4 +1,4 @@
-package cliente;
+package cliente.gestion_creacion_clientes;
 
 import java.util.ArrayList;
 

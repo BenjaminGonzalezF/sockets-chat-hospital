@@ -1,8 +1,9 @@
-package servidor;
+package servidor.gestion_clientes_online;
 
 import java.net.Socket;
 
-import cliente.Cliente;
+import cliente.gestion_creacion_clientes.Cliente;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -10,11 +11,11 @@ public class ComprobarConexion extends Thread {
 
     private Socket socketCliente;
     private Cliente cliente;
-    private RegistroClientes registroClientes;
+    private RegistroClientesOnline registroClientes;
     private DataInputStream entradaDatos;
 
     // Realiza una verificación periódica de la conexión con el cliente.
-    public ComprobarConexion(Socket socketCliente, Cliente cliente, RegistroClientes registroClientes) {
+    public ComprobarConexion(Socket socketCliente, Cliente cliente, RegistroClientesOnline registroClientes) {
         this.socketCliente = socketCliente;
         this.cliente = cliente;
         this.registroClientes = registroClientes;

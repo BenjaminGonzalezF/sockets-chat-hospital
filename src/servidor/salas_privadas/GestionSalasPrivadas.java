@@ -3,9 +3,9 @@ package servidor.salas_privadas;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import servidor.ConexionCliente;
-import servidor.GestionMensajes;
 import servidor.Servidor;
+import servidor.gestion_comunicacion_cliente.ConexionCliente;
+import servidor.gestion_comunicacion_cliente.GestionMensajes;
 import servidor.sockets_salas.SocketPrivado;
 
 public class GestionSalasPrivadas {

@@ -1,4 +1,4 @@
-package cliente;
+package cliente.gestion_comunicacion_servidor;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,9 +6,14 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import cliente.gestion_clientes_online.ActualizarClientesOnline;
+import cliente.gestion_creacion_clientes.Cliente;
+import cliente.gestion_creacion_clientes.GestionClientes;
+import cliente.gestion_salas.ConexionSalas;
 import controladores.ControladorVistaMedicos;
 
-public class GestionarConexion {
+
+public class GestionarConexionPrincipal {
 
     private DataInputStream dataInput;
     private DataOutputStream dataOutput;
@@ -19,7 +24,7 @@ public class GestionarConexion {
     private ConexionSalas gestionarSalas;
     private GestionClientes gestionClientes = new GestionClientes();
 
-    public GestionarConexion(Socket socket, ControladorVistaMedicos controlador) {
+    public GestionarConexionPrincipal(Socket socket, ControladorVistaMedicos controlador) {
         this.controlador = controlador;
         this.socket = socket;
         try {
