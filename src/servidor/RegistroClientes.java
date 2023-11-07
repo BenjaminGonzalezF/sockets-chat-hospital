@@ -1,5 +1,7 @@
 package servidor;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -24,12 +26,12 @@ public class RegistroClientes {
         actualizarOnlineATodos();
     }
 
-    private void enviarClientesOnline(Socket socket, ArrayList<String> clientesOnline){
+    private void enviarClientesOnline(Socket socket, String clientesOnline){
         System.out.println("Enviando : " + clientesOnline.toString());
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(clientesOnline);
-            objectOutputStream.flush();
+            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            dataOutputStream.writeUTF(clientesOnline);
+            dataOutputStream.flush();
             System.out.println("Se envio la lista de clientes conectados: " + clientesOnline);
         } catch (IOException ex) {
             System.out.println("Error al crear el stream de salida : " + ex.getMessage());
@@ -51,7 +53,7 @@ public class RegistroClientes {
         ArrayList<String> nombresClientes = new ArrayList<String>();
         nombresClientes = getClientesConectados();
         for (Cliente cliente : clientes) {
-            enviarClientesOnline(clienteSocketMap.get(cliente.getNombre()), nombresClientes);
+            enviarClientesOnline(clienteSocketMap.get(cliente.getNombre()), nombresClientes.toString());
         }
         
     }
