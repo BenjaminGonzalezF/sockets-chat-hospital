@@ -10,9 +10,7 @@ import java.util.ArrayList;
 
 public class ActualizarClientesOnline extends Thread {
 
-    private Socket socket;
     private ControladorVistaMedicos controlador;
-    private ObjectInputStream entradaObjetos;
     private DataInputStream entradaMensajes;
 
     private boolean conectado = true;
@@ -20,14 +18,10 @@ public class ActualizarClientesOnline extends Thread {
     ArrayList<String> usuariosOnline = new ArrayList<String>();
 
     public ActualizarClientesOnline(Socket socket, ControladorVistaMedicos controlador) {
-        this.socket = socket;
         this.controlador = controlador;
-
         try {
             entradaMensajes = new DataInputStream(socket.getInputStream());
         } catch (IOException ex) {
-            // Manejar la excepción apropiadamente, por ejemplo, registrándola o notificando
-            // al usuario.
             ex.printStackTrace();
             conectado = false;
         }
@@ -50,7 +44,6 @@ public class ActualizarClientesOnline extends Thread {
             try {
                 this.textoUsuariosOnline = entradaMensajes.readUTF();
                 controlador.actualizarClientesOnline(castearUsuarios(textoUsuariosOnline));
-
             } catch (IOException ex) {
                 ex.printStackTrace();
                 System.out.println("Error al recibir los objetos del servidor");

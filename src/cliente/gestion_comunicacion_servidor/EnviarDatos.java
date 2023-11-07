@@ -44,7 +44,19 @@ public class EnviarDatos {
         }
 
     }
+    public void enviar(Object objeto) {
+        try {
+            // dataOutput.writeUTF(usuario + ": " + mensaje );
+            objectOutputStream.writeObject(objeto);
 
+            System.out.println("Se envio el objeto: " + objeto);
+
+        } catch (IOException ex) {
+            System.out.println("Error al intentar enviar un mensaje: " + ex.getMessage());
+        }
+
+    }
+    
     public EnviarDatos(Socket socket, Object objeto, String usuario) {
         this.socket = socket;
         this.usuario = usuario;
@@ -59,17 +71,5 @@ public class EnviarDatos {
         }
     }
 
-    public void enviar(Object objeto) {
-        try {
-            // dataOutput.writeUTF(usuario + ": " + mensaje );
-            objectOutputStream.writeObject(objeto);
-
-            System.out.println("Se envio el objeto: " + objeto);
-
-        } catch (IOException ex) {
-            System.out.println("Error al intentar enviar un mensaje: " + ex.getMessage());
-        }
-
-    }
 
 }

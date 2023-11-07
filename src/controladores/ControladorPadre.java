@@ -31,15 +31,10 @@ public class ControladorPadre {
     private String salaActual = "salaAuxiliares";
     private Cliente cliente;
 
-     @FXML
-  public void initialize() {
-    columnaUsuarios.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-  }
-  @FXML
-  private TableView<UsuarioOnline> tablaUsuariosOnline;
-  @FXML
-  private TableColumn<UsuarioOnline, String> columnaUsuarios;
-
+    @FXML
+    private TableView<UsuarioOnline> tablaUsuariosOnline;
+    @FXML
+    private TableColumn<UsuarioOnline, String> columnaUsuarios;
     @FXML
     private WebView mensajes;
     @FXML
@@ -55,94 +50,63 @@ public class ControladorPadre {
     @FXML
     private Button btnSalaAdmision;
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
+    @FXML
+    public void initialize() {
+        columnaUsuarios.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     }
 
-    // Actualiza la interfaz desde el hilo de recibir datos
+    // Actualiza la interfaz, como se llama desde un hilo (RecibirDatos), se debe
+    // obtener el hilo que controla la interfaz
     public void actualizarMensajes(String mensaje) {
         contenidoHTML = mensaje;
-        Platform.runLater(() -> {
-            mensajes.getEngine().loadContent(contenidoHTML);
-        });
+        Platform.runLater(() -> mensajes.getEngine().loadContent(contenidoHTML));
     }
 
     @FXML
     private void enviarMensaje() {
-        if (salaActual == "salaMedicos") {
-            socket = cliente.getSocketConMedicos();
-        } else if (salaActual == "salaAuxiliares") {
-            socket = cliente.getSocketConAuxiliares();
-        } else if (salaActual == "salaExamenes") {
-            socket = cliente.getSocketConExamenes();
-        } else if (salaActual == "salaAdmision") {
-            socket = cliente.getSocketConAdmision();
-        } else {
-            socket = cliente.getSocketConPabellon();
-        }
+        socket = obtenerSocketSala(salaActual);
         EnviarDatos enviarDatos = new EnviarDatos(socket, getMensajeAEnviar(), cliente.getNombre());
         mensajeAEnviar.setHtmlText("");
     }
 
     @FXML
-    private void cambiarASalaMedicos() {
-        salaActual = "salaMedicos";
+    private void cambiarASala(String nuevaSala) {
+        salaActual = nuevaSala;
         actualizarMensajes("");
     }
 
-    @FXML
-    private void cambiarASalaAuxiliares() {
-        salaActual = "salaAuxiliares";
-        actualizarMensajes("");
 
-    }
-
-    @FXML
-    private void cambiarASalaExamenes() {
-        salaActual = "salaExamenes";
-        actualizarMensajes("");
-
-    }
-
-    @FXML
-    private void cambiarASalaAdmision() {
-        salaActual = "salaAdmision";
-        actualizarMensajes("");
-
-    }
-
-    /*
-     * public void actualizarClientesOnline(ArrayList<String> usuariosOnline) {
-     * StringBuilder usuarios = new StringBuilder();
-     * 
-     * System.out.println("Actualizando clientes online");
-     * for (String usuario : usuariosOnline) {
-     * usuarios.append(usuario).append("\n");
-     * System.out.println(usuario);
-     * }
-     * 
-     * String usuariosTexto = usuarios.toString();
-     * 
-     * Platform.runLater(() -> {
-     * this.tablaUsuariosOnline.set(usuariosTexto);
-     * });
-     * }
-     */
-
-
-     public void actualizarClientesOnline(ArrayList<String> usuariosOnline) {
+    // Recibe un arraylist de usuarios online y lo convierte en una ObservableList
+    // de UsuarioOnline para mostrarlo en la tabla
+    public void actualizarClientesOnline(ArrayList<String> usuariosOnline) {
         System.out.println("Actualizando clientes online" + usuariosOnline.toString());
-        ObservableList<UsuarioOnline> usuarios = FXCollections.observableArrayList();
-    
-        for (String usuario : usuariosOnline) {
-            usuarios.add(new UsuarioOnline(usuario));
-        }
-    
+        ObservableList<UsuarioOnline> usuarios = FXCollections.observableArrayList(
+                usuariosOnline.stream().map(UsuarioOnline::new).toList());
         tablaUsuariosOnline.setItems(usuarios);
     }
 
+    private Socket obtenerSocketSala(String nombreSala) {
+        switch (nombreSala) {
+            case "salaMedicos":
+                return cliente.getSocketConMedicos();
+            case "salaAuxiliares":
+                return cliente.getSocketConAuxiliares();
+            case "salaExamenes":
+                return cliente.getSocketConExamenes();
+            case "salaAdmision":
+                return cliente.getSocketConAdmision();
+            default:
+                return cliente.getSocketConPabellon();
+        }
+    }
+
+    // Getters y Setters
     public void setMainWindow(Stage mainWindow) {
         this.mainWindow = mainWindow;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 
     public String getMensajes() {
@@ -159,6 +123,31 @@ public class ControladorPadre {
 
     public String getSalaActual() {
         return salaActual;
+    }
+
+    //Cambios de sala de chat (funciones de los botones)
+    @FXML
+    private void cambiarASalaMedicos() {
+        salaActual = "salaMedicos";
+        actualizarMensajes("");
+    }
+
+    @FXML
+    private void cambiarASalaAuxiliares() {
+        salaActual = "salaAuxiliares";
+        actualizarMensajes("");
+    }
+
+    @FXML
+    private void cambiarASalaExamenes() {
+        salaActual = "salaExamenes";
+        actualizarMensajes("");
+    }
+
+    @FXML
+    private void cambiarASalaAdmision() {
+        salaActual = "salaAdmision";
+        actualizarMensajes("");
     }
 
 }
