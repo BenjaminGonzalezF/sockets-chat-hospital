@@ -1,20 +1,26 @@
 package cliente;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import controladores.ControladorVistaMedicos;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClienteChat extends Application {
+import cliente.gestion_comunicacion_servidor.GestionarConexionPrincipal;
+import cliente.gestion_creacion_clientes.GestionClientes;
+
+public class VentanaCliente extends Application {
     private String username = "";
     private Socket socket;
     private ControladorVistaMedicos controlador;
-    private GestionarConexion gestionarConexion;
-    
+    private GestionarConexionPrincipal gestionarConexion;
+    private GestionClientes gestionClientes;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/vistaMedicos.fxml"));
@@ -23,7 +29,14 @@ public class ClienteChat extends Application {
         primaryStage.setTitle("Vista Medico");
         primaryStage.setScene(new Scene(root, 1120, 700));
         primaryStage.show();
-    
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0); 
+            }
+        });
+
         iniciar();
     }
 
@@ -31,8 +44,9 @@ public class ClienteChat extends Application {
         try {
             socket = new Socket("localhost", 5000);
             controlador.setSocket(socket);
-            gestionarConexion = new GestionarConexion(socket, controlador);
-            
+            gestionClientes = new GestionClientes();
+            gestionarConexion = new GestionarConexionPrincipal(socket, controlador);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,6 +55,5 @@ public class ClienteChat extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 
 }

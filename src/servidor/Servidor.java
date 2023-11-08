@@ -2,17 +2,23 @@ package servidor;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import cliente.Cliente;
+import cliente.gestion_creacion_clientes.Cliente;
+import servidor.gestion_clientes_online.RegistroClientesOnline;
+import servidor.gestion_comunicacion_cliente.ConexionCliente;
+import servidor.gestion_comunicacion_cliente.GestionMensajes;
 import servidor.sockets_salas.SocketAdmision;
 import servidor.sockets_salas.SocketAuxiliares;
 import servidor.sockets_salas.SocketExamenes;
 import servidor.sockets_salas.SocketMedicos;
 import servidor.sockets_salas.SocketPabellon;
+import servidor.sockets_salas.SocketPrivado;
 
 public class Servidor {
     private int puerto = 5000;
@@ -23,17 +29,18 @@ public class Servidor {
     private GestionMensajes salaPabellon = new GestionMensajes();
     private GestionMensajes salaAdmision = new GestionMensajes();
 
+    
     private void iniciarServidor() {
 
         ServerSocket servidor = null;
         Socket socketCliente = null;
-
         SocketMedicos socketMedicos = new SocketMedicos(this);
         SocketAuxiliares socketAuxiliares = new SocketAuxiliares(this);
         SocketExamenes socketExamenes = new SocketExamenes(this);
         SocketPabellon socketPabellon = new SocketPabellon(this);
         SocketAdmision socketAdmision = new SocketAdmision(this);
-
+        RegistroClientesOnline registroClientes = new RegistroClientesOnline();
+        
         socketMedicos.start();
         socketAuxiliares.start();
         socketExamenes.start();
@@ -43,40 +50,33 @@ public class Servidor {
         try {
             // Se crea el serverSocket
             servidor = new ServerSocket(puerto);
-
             // Bucle infinito para esperar conexiones
+            System.out.println("Servidor a la espera de conexiones.");
             while (true) {
-                System.out.println("Servidor a la espera de conexiones.");
                 socketCliente = servidor.accept();
-                System.out.println("Cliente con la IP " + socketCliente.getInetAddress().getHostName() + " conectado.");
+                Cliente cliente = obtenerCliente(socketCliente);
+                registroClientes.agregarCliente(cliente, socketCliente);
+                
 
-                String rol = obtenerRol(socketCliente);
-                Cliente cliente = new Cliente("nombre", socketCliente, rol);
 
             }
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
-        } finally {
-            try {
-                socketCliente.close();
-                servidor.close();
-            } catch (IOException ex) {
-                System.out.println("Error al cerrar el servidor: " + ex.getMessage());
-            }
         }
+    
 
     }
 
-    public String obtenerRol(Socket socketCliente) {
-        DataInputStream entradaDatos;
+
+    public Cliente obtenerCliente(Socket socketCliente) {
         try {
-            entradaDatos = new DataInputStream(socketCliente.getInputStream());
-            String rol = entradaDatos.readUTF();
-            System.out.println("El rol es: " + rol);
-            return rol;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+            ObjectInputStream objectInputStream = new ObjectInputStream(socketCliente.getInputStream());
+            Cliente cliente = (Cliente) objectInputStream.readObject();
+            System.out.println("HEMOS RECIBIDO UN CLIENTEE " + cliente.getNombre());
+            return cliente;
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+            System.out.println("Error al obtener el cliente");
         }
         return null;
     }
@@ -108,6 +108,12 @@ public class Servidor {
             conexionCliente.start();
         }
 
+    }
+
+    public void conectarClientecon(Socket socket, GestionMensajes gestorMensajes) {
+        ConexionCliente conexionCliente = new ConexionCliente(socket, gestorMensajes);
+        gestorMensajes.agregarObservador(conexionCliente);
+        conexionCliente.start();
     }
 
     public static void main(String[] args) {

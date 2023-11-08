@@ -7,7 +7,7 @@ import java.net.Socket;
 import servidor.Servidor;
 
 public abstract class SalaSocket extends Thread {
-    protected final int puerto;
+    protected int puerto;
     protected final Servidor servidor;
     protected final String nombreServidor;
 

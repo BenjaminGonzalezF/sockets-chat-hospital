@@ -1,22 +1,30 @@
-package cliente;
+package cliente.gestion_creacion_clientes;
 
+import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 
-public class Cliente {
+import cliente.gestion_salas.ConexionSalaPrivada;
+
+public class Cliente implements Serializable {
     private String nombre;
+    private String rol;
+
     private Socket socket;
     private Socket socketConMedicos;
     private Socket socketConAuxiliares;
     private Socket socketConExamenes;
     private Socket socketConPabellon;
     private Socket setSocketConAdmision;
+    private ArrayList<ConexionSalaPrivada> salasPrivadas = new ArrayList<ConexionSalaPrivada>();
 
-    private String rol;
-
-    public Cliente(String nombre, Socket socket, String rol) {
+    public Cliente(String nombre , String rol) {
         this.nombre = nombre;
-        this.socket = socket;
         this.rol = rol;
+    }
+
+    public void addSalaPrivada(ConexionSalaPrivada salaPrivada) {
+        this.salasPrivadas.add(salaPrivada);
     }
 
     // Getters y Setters
