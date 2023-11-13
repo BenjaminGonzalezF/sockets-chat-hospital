@@ -2,7 +2,9 @@ package controladores;
 
 import java.net.Socket;
 
-import cliente.EnviarDatos;
+import cliente.gestion_comunicacion_servidor.EnviarDatos;
+import cliente.gestion_creacion_clientes.Cliente;
+import cliente.gestion_salas.ConexionSalas;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+<<<<<<< HEAD
 public class controladorVistaMedicos {
     
     private Stage mainWindow;
@@ -50,5 +53,8 @@ public void actualizarMensajes(String mensaje) {
         mensajeAEnviar.setHtmlText("");
     }
     
+=======
+public class ControladorVistaMedicos extends ControladorPadre {
+>>>>>>> Benjamin
 
 }

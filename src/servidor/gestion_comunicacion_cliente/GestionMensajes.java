@@ -1,11 +1,13 @@
-package servidor;
+package servidor.gestion_comunicacion_cliente;
 
 import java.util.ArrayList;
 import java.util.List;
-import servidor.ConexionCliente;
+
+import servidor.gestion_comunicacion_cliente.ConexionCliente;
 
 public class GestionMensajes {
     private String mensaje;
+    private String nombreSala;
 
     private List<ConexionCliente> observadores = new ArrayList<>();
 
