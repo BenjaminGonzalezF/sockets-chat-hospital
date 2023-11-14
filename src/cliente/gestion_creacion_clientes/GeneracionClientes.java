@@ -6,6 +6,7 @@ public class GeneracionClientes {
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private int nClientes;
 
+
     //Genera un nombre random para el client
     public String generarNombre() {
         int random = (int) (Math.random() * 1000) + 1;
@@ -15,10 +16,10 @@ public class GeneracionClientes {
 
 
 
-    public Cliente crearCliente() {
+    public Cliente crearCliente(Cliente cliente) {
         nClientes++;
         String nombre = generarNombre();
-        Cliente cliente = new Cliente(nombre, "Examenes");
+        cliente.setNombre(nombre);
         clientes.add(cliente);
         return cliente;
     }

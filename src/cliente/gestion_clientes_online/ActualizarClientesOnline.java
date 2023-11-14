@@ -1,5 +1,6 @@
 package cliente.gestion_clientes_online;
 
+import controladores.ControladorPadre;
 import controladores.ControladorVistaMedicos;
 
 import java.io.DataInputStream;
@@ -10,14 +11,14 @@ import java.util.ArrayList;
 
 public class ActualizarClientesOnline extends Thread {
 
-    private ControladorVistaMedicos controlador;
+    private ControladorPadre controlador;
     private DataInputStream entradaMensajes;
 
     private boolean conectado = true;
     String  textoUsuariosOnline;
     ArrayList<String> usuariosOnline = new ArrayList<String>();
 
-    public ActualizarClientesOnline(Socket socket, ControladorVistaMedicos controlador) {
+    public ActualizarClientesOnline(Socket socket, ControladorPadre controlador) {
         this.controlador = controlador;
         try {
             entradaMensajes = new DataInputStream(socket.getInputStream());

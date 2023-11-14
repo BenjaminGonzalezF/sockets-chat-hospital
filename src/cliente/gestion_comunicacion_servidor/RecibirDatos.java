@@ -1,5 +1,6 @@
 package cliente.gestion_comunicacion_servidor;
 
+import controladores.ControladorPadre;
 import controladores.ControladorVistaMedicos;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,13 +10,13 @@ import java.net.Socket;
 public class RecibirDatos implements Runnable {
 
     private Socket socket;
-    private ControladorVistaMedicos controlador;
+    private ControladorPadre controlador;
     private Boolean conectado = true;
     private DataInputStream entradaDatos;
     private String salaActual;
     private String mensajes = "";
 
-    public RecibirDatos(Socket socket, ControladorVistaMedicos controlador, String salaActual) {
+    public RecibirDatos(Socket socket, ControladorPadre controlador, String salaActual) {
         this.socket = socket;
         this.controlador = controlador;
         this.salaActual = salaActual;

@@ -6,11 +6,12 @@ import java.net.UnknownHostException;
 
 import cliente.gestion_comunicacion_servidor.RecibirDatos;
 import cliente.gestion_creacion_clientes.Cliente;
+import controladores.ControladorPadre;
 import controladores.ControladorVistaMedicos;
 
 public class ConexionSalas {
     private Cliente cliente;
-    private ControladorVistaMedicos controlador;
+    private ControladorPadre controlador;
 
     private static final int PUERTO_MEDICOS = 5001;
     private static final int PUERTO_AUXILIARES = 5002;
@@ -18,7 +19,7 @@ public class ConexionSalas {
     private static final int PUERTO_PABELLON = 5004;
     private static final int PUERTO_ADMISION = 5005;
 
-    public ConexionSalas(Cliente cliente, ControladorVistaMedicos controlador) {
+    public ConexionSalas(Cliente cliente, ControladorPadre controlador) {
         this.cliente = cliente;
         this.controlador = controlador;
         conectarASalas();

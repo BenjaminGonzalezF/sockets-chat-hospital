@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 
+import cliente.gestion_comunicacion_servidor.ConexionInicial;
 import cliente.gestion_creacion_clientes.Cliente;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 
 public class ControladorVistaCambioContrasena {
     Cliente cliente = new Cliente("","");
+    ConexionInicial conexionInicial = new ConexionInicial();
 
     @FXML
     private PasswordField campoNuevaContrasena;
@@ -69,7 +71,6 @@ public class ControladorVistaCambioContrasena {
         } else {
             System.out.println("Rol no encontrado");
         }
-
     }
 
     private void mostrarVista(String vistaFXML) {
@@ -84,6 +85,7 @@ public class ControladorVistaCambioContrasena {
             Scene escenaActual = btnGuardarCambios.getScene();
     
             Stage ventana = (Stage) escenaActual.getWindow();
+            conexionInicial.iniciar(cliente,controlador);
             ventana.setScene(nuevaEscena);
         } catch (IOException e) {
             e.printStackTrace();

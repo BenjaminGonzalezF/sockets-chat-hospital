@@ -10,6 +10,7 @@ import cliente.gestion_clientes_online.ActualizarClientesOnline;
 import cliente.gestion_creacion_clientes.Cliente;
 import cliente.gestion_creacion_clientes.GeneracionClientes;
 import cliente.gestion_salas.ConexionSalas;
+import controladores.ControladorPadre;
 import controladores.ControladorVistaMedicos;
 
 
@@ -17,14 +18,14 @@ public class GestionarConexionPrincipal {
 
     private DataInputStream dataInput;
     private DataOutputStream dataOutput;
-    private ControladorVistaMedicos controlador;
+    private ControladorPadre controlador;
     private ObjectInputStream obtenerUsuariosOnline;
 
     private Socket socket;
     private ConexionSalas gestionarSalas;
     private GeneracionClientes gestionClientes = new GeneracionClientes();
 
-    public GestionarConexionPrincipal(Socket socket, ControladorVistaMedicos controlador) {
+    public GestionarConexionPrincipal(Socket socket, ControladorPadre controlador, Cliente cliente) {
         this.controlador = controlador;
         this.socket = socket;
         try {
@@ -32,7 +33,7 @@ public class GestionarConexionPrincipal {
             dataOutput = new DataOutputStream(socket.getOutputStream());
 
             
-            Cliente cliente = gestionClientes.crearCliente();
+            gestionClientes.crearCliente(cliente);
             controlador.setCliente(cliente);
             controlador.setSocket(socket);
 
