@@ -21,6 +21,7 @@ public class GeneracionClientes {
         String nombre = generarNombre();
         cliente.setNombre(nombre);
         clientes.add(cliente);
+        // guardar cliente en BD
         return cliente;
     }
 }

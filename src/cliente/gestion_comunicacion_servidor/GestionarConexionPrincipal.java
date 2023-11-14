@@ -13,7 +13,6 @@ import cliente.gestion_salas.ConexionSalas;
 import controladores.ControladorPadre;
 import controladores.ControladorVistaMedicos;
 
-
 public class GestionarConexionPrincipal {
 
     private DataInputStream dataInput;
@@ -42,13 +41,10 @@ public class GestionarConexionPrincipal {
 
             ActualizarClientesOnline actualizarClientesOnline = new ActualizarClientesOnline(socket, controlador);
             actualizarClientesOnline.start();
-            
-
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 }
