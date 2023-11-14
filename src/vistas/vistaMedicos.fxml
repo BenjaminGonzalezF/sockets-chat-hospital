@@ -21,7 +21,7 @@
          <right>
             <ScrollPane prefHeight="466.0" prefWidth="246.0" BorderPane.alignment="CENTER">
                <content>
-                  <TableView fx:id="tablaUsuariosOnline" prefHeight="554.0" prefWidth="244.0">
+                  <TableView fx:id="tablaUsuariosOnline" prefHeight="557.0" prefWidth="243.0">
                      <columns>
                         <TableColumn fx:id="columnaUsuarios" prefWidth="243.19999998807907" text="Usuarios Online" />
                      </columns>

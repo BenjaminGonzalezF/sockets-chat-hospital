@@ -16,10 +16,9 @@ import java.io.IOException;
 import java.net.Socket;
 
 import cliente.gestion_comunicacion_servidor.GestionarConexionPrincipal;
-import cliente.gestion_creacion_clientes.GestionClientes;
+import cliente.gestion_creacion_clientes.GeneracionClientes;
 
 public class VentanaCliente extends Application {
-    private String username = "";
     private Socket socket;
 <<<<<<< HEAD:src/cliente/ClienteChat.java
     private controladorVistaMedicos controlador;
@@ -28,7 +27,7 @@ public class VentanaCliente extends Application {
 =======
     private ControladorVistaMedicos controlador;
     private GestionarConexionPrincipal gestionarConexion;
-    private GestionClientes gestionClientes;
+    private GeneracionClientes gestionClientes;
 
 >>>>>>> Benjamin:src/cliente/VentanaCliente.java
     @Override
@@ -54,7 +53,7 @@ public class VentanaCliente extends Application {
         try {
             socket = new Socket("localhost", 5000);
             controlador.setSocket(socket);
-            gestionClientes = new GestionClientes();
+            gestionClientes = new GeneracionClientes();
             gestionarConexion = new GestionarConexionPrincipal(socket, controlador);
 
         } catch (IOException e) {

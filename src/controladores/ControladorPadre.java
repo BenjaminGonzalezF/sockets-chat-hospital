@@ -14,10 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
@@ -74,7 +72,6 @@ public class ControladorPadre {
         salaActual = nuevaSala;
         actualizarMensajes("");
     }
-
 
     // Recibe un arraylist de usuarios online y lo convierte en una ObservableList
     // de UsuarioOnline para mostrarlo en la tabla

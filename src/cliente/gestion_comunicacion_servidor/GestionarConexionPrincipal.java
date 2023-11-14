@@ -37,7 +37,7 @@ import java.util.ArrayList;
 
 import cliente.gestion_clientes_online.ActualizarClientesOnline;
 import cliente.gestion_creacion_clientes.Cliente;
-import cliente.gestion_creacion_clientes.GestionClientes;
+import cliente.gestion_creacion_clientes.GeneracionClientes;
 import cliente.gestion_salas.ConexionSalas;
 import controladores.ControladorVistaMedicos;
 
@@ -51,7 +51,7 @@ public class GestionarConexionPrincipal {
 
     private Socket socket;
     private ConexionSalas gestionarSalas;
-    private GestionClientes gestionClientes = new GestionClientes();
+    private GeneracionClientes gestionClientes = new GeneracionClientes();
 
     public GestionarConexionPrincipal(Socket socket, ControladorVistaMedicos controlador) {
         this.controlador = controlador;
