@@ -2,7 +2,7 @@ package cliente.gestion_creacion_clientes;
 
 import java.util.ArrayList;
 
-public class GestionClientes {
+public class GeneracionClientes {
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private int nClientes;
 
