@@ -50,6 +50,14 @@ public class ConexionSalas {
                 conectarConSala("localhost", PUERTO_ADMISION, "salaAdmision");
                 conectarConSala("localhost", PUERTO_AUXILIARES, "salaAuxiliares");
                 break;
+            case "Administrador":
+                conectarConSala("localhost", PUERTO_MEDICOS, "salaMedicos");
+                conectarConSala("localhost", PUERTO_AUXILIARES, "salaAuxiliares");
+                conectarConSala("localhost", PUERTO_EXAMENES, "salaExamenes");
+                conectarConSala("localhost", PUERTO_PABELLON, "salaPabellon");
+                conectarConSala("localhost", PUERTO_ADMISION, "salaAdmision");
+                break;
+
             default:
                 break;
         }

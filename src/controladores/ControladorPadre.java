@@ -26,7 +26,7 @@ public class ControladorPadre {
     private Stage mainWindow;
     private Socket socket;
     private String contenidoHTML = "";
-    private String salaActual = "salaAuxiliares";
+    private String salaActual = "";
     private Cliente cliente;
 
     @FXML
@@ -53,6 +53,28 @@ public class ControladorPadre {
         columnaUsuarios.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     }
 
+    public void definirSalaInicial(){
+        if(cliente.getRol() == "Medico"){
+            salaActual = "salaMedicos";
+        }
+        if (cliente.getRol() == "Auxiliar"){
+            salaActual = "salaAuxiliares";
+        }
+        if (cliente.getRol() == "Examenes"){
+            salaActual = "salaExamenes";
+        }
+        if (cliente.getRol() == "Admision"){
+            salaActual = "salaAdmision";
+        }
+        if (cliente.getRol() == "Pabellon"){
+            salaActual = "salaPabellon";
+        }
+        if(cliente.getRol() == "Administrador"){
+            salaActual = "salaMedicos";
+        }
+        
+    }
+
     // Actualiza la interfaz, como se llama desde un hilo (RecibirDatos), se debe
     // obtener el hilo que controla la interfaz
     public void actualizarMensajes(String mensaje) {
@@ -60,46 +82,19 @@ public class ControladorPadre {
         Platform.runLater(() -> mensajes.getEngine().loadContent(contenidoHTML));
     }
 
-  /*  @FXML
-    private void enviarMensaje() {
-        socket = obtenerSocketSala(salaActual);
-        EnviarDatos enviarDatos = new EnviarDatos(socket, getMensajeAEnviar(), cliente.getNombre());
-        mensajeAEnviar.setHtmlText("");
-    }*/ 
-
     @FXML
     private void enviarMensaje() {
         socket = obtenerSocketSala(salaActual);
-        String mensajeHTML = mensajeAEnviar.getHtmlText();
-    
-        // Muestra el mensaje en el chat
-        mostrarMensajeEnChat(mensajeHTML);
-    
-        // Envía el mensaje en formato de texto sin formato al servidor
-        String mensajeTexto = convertirHTMLaTexto(mensajeHTML);
-        EnviarDatos enviarDatos = new EnviarDatos(socket, mensajeTexto, cliente.getNombre());
-    
-        // Limpiar el HTMLEditor después de enviar el mensaje
+        String mensaje = agregarNombreAlMensaje(cliente.getNombre(), getMensajeAEnviar());
+        EnviarDatos enviarDatos = new EnviarDatos(socket, mensaje, cliente.getNombre());
         mensajeAEnviar.setHtmlText("");
     }
-    
-    // Método para mostrar el mensaje en el chat
-    private void mostrarMensajeEnChat(String mensajeHTML) {
-        // Agrega el nuevo mensaje al contenido HTML existente
-        contenidoHTML += mensajeHTML;
-    
-        // Actualiza la interfaz gráfica en el hilo de la interfaz de usuario
-        Platform.runLater(() -> mensajes.getEngine().loadContent(contenidoHTML));
-    }
-    
-    // Método para convertir HTML a texto
-    private String convertirHTMLaTexto(String html) {
-        WebView webView = new WebView();
-        webView.getEngine().loadContent(html);
-        return (String) webView.getEngine().executeScript("document.body.innerText");
-    }
-    
 
+    public String agregarNombreAlMensaje(String nombreCliente, String contenidoHTML) {
+        String mensajeConNombre = "<html dir=\"ltr\"><head></head><body contenteditable=\"true\">" + nombreCliente + ": " + contenidoHTML + "</body></html>";
+        return mensajeConNombre;
+    }
+    
 
     @FXML
     private void cambiarASala(String nuevaSala) {

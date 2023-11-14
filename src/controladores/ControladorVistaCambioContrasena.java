@@ -86,6 +86,7 @@ public class ControladorVistaCambioContrasena {
     
             Stage ventana = (Stage) escenaActual.getWindow();
             conexionInicial.iniciar(cliente,controlador);
+            controlador.definirSalaInicial();
             ventana.setScene(nuevaEscena);
         } catch (IOException e) {
             e.printStackTrace();
