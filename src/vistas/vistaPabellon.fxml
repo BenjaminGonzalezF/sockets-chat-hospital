@@ -18,13 +18,17 @@
 
 <!-- Agregamos CheckBox -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ControladorVistaAdministrativo">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ControladorVistaPabellon">
    <children>
       <BorderPane prefHeight="698.0" prefWidth="1127.0">
          <right>
-            <ScrollPane prefHeight="466.0" prefWidth="246.0" BorderPane.alignment="CENTER">
+<ScrollPane prefHeight="466.0" prefWidth="246.0" BorderPane.alignment="CENTER">
                <content>
-                  <Label prefHeight="34.0" prefWidth="102.0" text="Usuarios en linea:" textAlignment="JUSTIFY" />
+                  <TableView fx:id="tablaUsuariosOnline" prefHeight="557.0" prefWidth="243.0">
+                     <columns>
+                        <TableColumn fx:id="columnaUsuarios" prefWidth="243.19999998807907" text="Usuarios Online" />
+                     </columns>
+                  </TableView>
                </content>
             </ScrollPane>
          </right>

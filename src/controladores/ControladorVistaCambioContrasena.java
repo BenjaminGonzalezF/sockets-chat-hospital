@@ -57,17 +57,17 @@ public class ControladorVistaCambioContrasena {
 
     private void cargarVistaCorrespondiente(String rol) {
         if(rol.equals("Administrador")) {
-            this.mostrarVista("vistaAdministrativo.fxml");
+            this.mostrarVista("vistaMedicos.fxml");
         } else if(rol.equals("Medico")) {
             this.mostrarVista("vistaMedicos.fxml");
         } else if(rol.equals("Pabellon")) {
-            //this.mostrarVista("vistaAdministrativo.fxml");
+            this.mostrarVista("vistaPabellon.fxml");
         } else if(rol.equals("Auxiliar")) {
-            //this.mostrarVista("vistaAdministrativo.fxml");
+            this.mostrarVista("vistaAuxiliar.fxml");
         } else if(rol.equals("Examenes")) {
-            //this.mostrarVista("vistaAdministrativo.fxml");
+            this.mostrarVista("vistaExamenes.fxml");
         } else if(rol.equals("Admision")) {
-            //this.mostrarVista("vistaAdministrativo.fxml");
+            this.mostrarVista("vistaAdmision.fxml");
         } else {
             System.out.println("Rol no encontrado");
         }

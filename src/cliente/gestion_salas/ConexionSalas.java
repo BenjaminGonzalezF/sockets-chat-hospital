@@ -33,7 +33,6 @@ public class ConexionSalas {
                 conectarConSala("localhost", PUERTO_EXAMENES, "salaExamenes");
                 conectarConSala("localhost", PUERTO_PABELLON, "salaPabellon");
                 conectarConSala("localhost", PUERTO_ADMISION, "salaAdmision");
-
                 break;
             case "Auxiliar":
                 conectarConSala("localhost", PUERTO_AUXILIARES, "salaAuxiliares");

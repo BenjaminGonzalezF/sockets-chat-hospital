@@ -55,9 +55,7 @@ public class Servidor {
             while (true) {
                 socketCliente = servidor.accept();
                 Cliente cliente = obtenerCliente(socketCliente);
-                registroClientes.agregarCliente(cliente, socketCliente);
-                
-
+                registroClientes.agregarCliente(cliente, socketCliente);               
 
             }
         } catch (IOException ex) {

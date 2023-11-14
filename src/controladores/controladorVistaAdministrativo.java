@@ -6,7 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
-public class ControladorVistaAdministrativo  extends ControladorPadre{
+public class ControladorVistaAdministrativo extends ControladorPadre{
     @FXML
     private WebView mensajes;
 
@@ -16,16 +16,6 @@ public class ControladorVistaAdministrativo  extends ControladorPadre{
     @FXML
     private Button btnEnviarMensaje;
 
-    /* @FXML
-    private ChoiceBox<String> tipoAdministrativo; // Agregar ChoiceBox para seleccionar el tipo de administrativo
-
-    @FXML
-    public void initialize() {
-        // Configuración inicial, si es necesaria
-        tipoAdministrativo.getItems().addAll("Admisión", "Pabellón", "Exámenes", "Auxiliar");
-        tipoAdministrativo.setValue("Admisión"); // Establece el tipo por defecto
-        cargarConversacion(); // Carga la conversación inicial
-    } */
 
     @FXML
     private void enviarMensaje() {
