@@ -1,6 +1,6 @@
 package cliente.gestion_comunicacion_servidor;
 
-import controladores.controladorVistaMedicos;
+import controladores.ControladorVistaMedicos;
 import javafx.event.ActionEvent;
 
 import java.io.DataInputStream;

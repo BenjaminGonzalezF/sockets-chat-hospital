@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
-public class controladorVistaLogin {
+public class ControladorVistaLogin {
 
     @FXML
     private TextField campoUsuario;
@@ -53,7 +53,7 @@ public class controladorVistaLogin {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCambioContrasena.fxml"));
             Parent vistaCambioContrasena = loader.load();
 
-            controladorVistaCambioContraseña controladorCambioContrasena = loader.getController();
+            ControladorVistaCambioContrasena controladorCambioContrasena = loader.getController();
 
             Scene escenaActual = btnIniciarSesion.getScene();
             Scene nuevaEscena = new Scene(vistaCambioContrasena, escenaActual.getWidth(), escenaActual.getHeight());

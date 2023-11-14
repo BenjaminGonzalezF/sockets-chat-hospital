@@ -6,12 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-<<<<<<< HEAD:src/cliente/ClienteChat.java
-import controladores.controladorVistaMedicos;
-=======
 import javafx.stage.WindowEvent;
 import controladores.ControladorVistaMedicos;
->>>>>>> Benjamin:src/cliente/VentanaCliente.java
 import java.io.IOException;
 import java.net.Socket;
 
@@ -20,16 +16,10 @@ import cliente.gestion_creacion_clientes.GeneracionClientes;
 
 public class VentanaCliente extends Application {
     private Socket socket;
-<<<<<<< HEAD:src/cliente/ClienteChat.java
-    private controladorVistaMedicos controlador;
-    private GestionarConexion gestionarConexion;
-    
-=======
     private ControladorVistaMedicos controlador;
     private GestionarConexionPrincipal gestionarConexion;
     private GeneracionClientes gestionClientes;
 
->>>>>>> Benjamin:src/cliente/VentanaCliente.java
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/vistaMedicos.fxml"));

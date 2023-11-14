@@ -6,7 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
-public class controladorVistaAdministrativo {
+public class ControladorVistaAdministrativo {
     @FXML
     private WebView mensajes;
 
