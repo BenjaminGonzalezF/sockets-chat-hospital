@@ -60,12 +60,46 @@ public class ControladorPadre {
         Platform.runLater(() -> mensajes.getEngine().loadContent(contenidoHTML));
     }
 
-    @FXML
+  /*  @FXML
     private void enviarMensaje() {
         socket = obtenerSocketSala(salaActual);
         EnviarDatos enviarDatos = new EnviarDatos(socket, getMensajeAEnviar(), cliente.getNombre());
         mensajeAEnviar.setHtmlText("");
+    }*/ 
+
+    @FXML
+    private void enviarMensaje() {
+        socket = obtenerSocketSala(salaActual);
+        String mensajeHTML = mensajeAEnviar.getHtmlText();
+    
+        // Muestra el mensaje en el chat
+        mostrarMensajeEnChat(mensajeHTML);
+    
+        // Envía el mensaje en formato de texto sin formato al servidor
+        String mensajeTexto = convertirHTMLaTexto(mensajeHTML);
+        EnviarDatos enviarDatos = new EnviarDatos(socket, mensajeTexto, cliente.getNombre());
+    
+        // Limpiar el HTMLEditor después de enviar el mensaje
+        mensajeAEnviar.setHtmlText("");
     }
+    
+    // Método para mostrar el mensaje en el chat
+    private void mostrarMensajeEnChat(String mensajeHTML) {
+        // Agrega el nuevo mensaje al contenido HTML existente
+        contenidoHTML += mensajeHTML;
+    
+        // Actualiza la interfaz gráfica en el hilo de la interfaz de usuario
+        Platform.runLater(() -> mensajes.getEngine().loadContent(contenidoHTML));
+    }
+    
+    // Método para convertir HTML a texto
+    private String convertirHTMLaTexto(String html) {
+        WebView webView = new WebView();
+        webView.getEngine().loadContent(html);
+        return (String) webView.getEngine().executeScript("document.body.innerText");
+    }
+    
+
 
     @FXML
     private void cambiarASala(String nuevaSala) {
