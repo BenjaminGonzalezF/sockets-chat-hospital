@@ -6,13 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml" fx:controller="controladores.ControladorVistaCambioContrasena">
     <children>
         <VBox alignment="CENTER" spacing="20" layoutX="200" layoutY="100">
             <Label text="Cambiar Contraseña" style="-fx-font-size: 18pt;" />
-            <PasswordFieldestilo="-fx-pref-width: 300;" promptText="Nueva Contraseña" />
-            <PasswordField style="-fx-pref-width: 300;" promptText="Confirmar Contraseña" />
-            <Button text="Guardar Cambios" style="-fx-pref-width: 150;" />
+            <PasswordField fx:id = "campoNuevaContrasena" style="-fx-pref-width: 300;" promptText="Nueva Contraseña" />
+            <PasswordField fx:id = "campoConfirmarContrasena" style="-fx-pref-width: 300;" promptText="Confirmar Contraseña" />
+            <Button fx:id = "btnGuardarCambios" onAction="#guardarCambiosContrasena" text="Guardar Cambios" style="-fx-pref-width: 150;" />
+            <Label fx:id="mensajeError" layoutX="324.0" layoutY="324.0" text="" />
+
         </VBox>
     </children>
 </AnchorPane>

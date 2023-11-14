@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
-public class ControladorVistaAdministrativo {
+public class ControladorVistaAdministrativo  extends ControladorPadre{
     @FXML
     private WebView mensajes;
 

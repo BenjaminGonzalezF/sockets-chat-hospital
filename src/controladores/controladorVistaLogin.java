@@ -10,8 +10,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import cliente.gestion_creacion_clientes.Cliente;
 
 public class ControladorVistaLogin {
+
+    private Cliente cliente = new Cliente("","");
+
 
     @FXML
     private TextField campoUsuario;
@@ -32,7 +39,6 @@ public class ControladorVistaLogin {
 
     @FXML
     private void iniciarSesion() {
-        // Realiza la lógica de autenticación aquí
         if (autenticarUsuario()) {
             mostrarVistaCambioContrasena();
         } else {
@@ -41,19 +47,36 @@ public class ControladorVistaLogin {
         }
     }
 
-    private boolean autenticarUsuario() {
-        // Aquí debes implementar la lógica de autenticación.
-        // Compara el usuario y la contraseña con tus datos de usuario.
-        // Devuelve true si la autenticación es exitosa, de lo contrario, false.
-        return campoUsuario.getText().equals("usuario") && campoContrasena.getText().equals("contrasena");
+private boolean autenticarUsuario() {
+    String usuario = campoUsuario.getText();
+    String contrasena = campoContrasena.getText();
+
+    Map<String, String> usuariosYContrasenas = new HashMap<>();
+    usuariosYContrasenas.put("Administrador", "Administrador");
+    usuariosYContrasenas.put("Medico", "Medico");
+    usuariosYContrasenas.put("Pabellon", "Pabellon");
+    usuariosYContrasenas.put("Auxiliar", "Auxiliar");
+    usuariosYContrasenas.put("Examenes", "Examenes");
+    usuariosYContrasenas.put("Admision", "Admision");
+
+    if (usuariosYContrasenas.containsKey(usuario) && usuariosYContrasenas.get(usuario).equals(contrasena)) {
+        String rol = usuariosYContrasenas.get(usuario);
+        System.out.println("Iniciando como " + rol);
+        cliente.setRol(rol);
+        return true;
     }
+
+    return false;
+}
+
 
     private void mostrarVistaCambioContrasena() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCambioContrasena.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/vistaCambioContraseña.fxml"));
             Parent vistaCambioContrasena = loader.load();
 
             ControladorVistaCambioContrasena controladorCambioContrasena = loader.getController();
+            controladorCambioContrasena.setCliente(cliente);
 
             Scene escenaActual = btnIniciarSesion.getScene();
             Scene nuevaEscena = new Scene(vistaCambioContrasena, escenaActual.getWidth(), escenaActual.getHeight());
