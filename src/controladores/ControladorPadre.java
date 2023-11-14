@@ -29,6 +29,7 @@ public class ControladorPadre {
     private String salaActual = "";
     private Cliente cliente;
 
+
     @FXML
     private TableView<UsuarioOnline> tablaUsuariosOnline;
     @FXML
@@ -47,10 +48,17 @@ public class ControladorPadre {
     private Button btnSalaExamenes;
     @FXML
     private Button btnSalaAdmision;
+    @FXML
+    private Button btnSalir;
 
     @FXML
     public void initialize() {
         columnaUsuarios.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    }
+
+    @FXML
+    private void salir() {
+        System.exit(0);
     }
 
     public void definirSalaInicial(){

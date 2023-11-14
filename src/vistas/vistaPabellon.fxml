@@ -42,10 +42,10 @@
                   <CheckBox layoutX="441.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Admisión" />
                   <Circle fill="DODGERBLUE" layoutX="884.0" layoutY="73.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label layoutX="864.0" layoutY="61.0" text="Usuario" />
-                  <Button layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
+                  <Button fx:id="btnSalir"layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
                   <Pane prefHeight="139.0" prefWidth="1127.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <Button fx:id="btnSalaMedicos" layoutX="33.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaMedicos" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Pabellon" textFill="WHITE">
+                        <Button fx:id="btnSalaMedicos" onAction="#salir" layoutX="33.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaMedicos" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Pabellon" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
                            </font>
