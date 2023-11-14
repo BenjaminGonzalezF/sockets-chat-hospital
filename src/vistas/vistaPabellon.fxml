@@ -46,7 +46,7 @@
                               <Font size="17.0" />
                            </font>
                         </Button>
-                        <Label layoutX="993.0" layoutY="34.0" text="Pabellon">
+                        <Label layoutX="993.0" layoutY="34.0" text="Usuario">
                            <font>
                               <Font size="16.0" />
                            </font>

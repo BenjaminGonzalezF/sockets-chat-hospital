@@ -41,7 +41,7 @@
                   <Button layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
                   <Pane prefHeight="139.0" prefWidth="1127.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <Button fx:id="btnSalaExamenes" layoutX="346.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaExamenes" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7#FFFFFF;" text="Exámenes" textFill="WHITE">
+                        <Button fx:id="btnSalaAdmision" layoutX="501.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAdmision" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Admision" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>

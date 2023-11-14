@@ -41,12 +41,12 @@
                   <Button layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
                   <Pane prefHeight="139.0" prefWidth="1127.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <Button fx:id="btnSalaMedicos" layoutX="33.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaMedicos" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Auxiliar" textFill="WHITE">
+                        <Button fx:id="btnSalaAuxiliares" layoutX="189.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAuxiliares" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Auxiliares" textFill="WHITE">
                            <font>
-                              <Font size="17.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Label layoutX="993.0" layoutY="34.0" text="Pabellon">
+                        <Label layoutX="993.0" layoutY="34.0" text="Usuario">
                            <font>
                               <Font size="16.0" />
                            </font>
