@@ -6,12 +6,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Servidor",
+            "request": "launch",
+            "mainClass": "servidor.Servidor",
+            "projectName": "sockets-chat-hospital_c6d7429"
+        },
+        {
+            "type": "java",
             "name": "VentanaCliente",
             "request": "launch",
             "mainClass": "cliente.VentanaCliente",
             "projectName": "sockets-chat-hospital_5221fb3c",
             "vmArgs": " --module-path \"C:/Program Files/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web"
-
         },
         {
             "type": "java",

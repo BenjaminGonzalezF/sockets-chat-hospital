@@ -12,14 +12,14 @@ import java.io.IOException;
 import java.net.Socket;
 
 import cliente.gestion_comunicacion_servidor.GestionarConexionPrincipal;
-import cliente.gestion_creacion_clientes.GestionClientes;
+import cliente.gestion_creacion_clientes.GeneracionClientes;
 
 public class VentanaCliente extends Application {
     private String username = "";
     private Socket socket;
     private ControladorVistaMedicos controlador;
     private GestionarConexionPrincipal gestionarConexion;
-    private GestionClientes gestionClientes;
+    private GeneracionClientes gestionClientes;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,7 +33,7 @@ public class VentanaCliente extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.exit(0); 
+                System.exit(0);
             }
         });
 
@@ -44,7 +44,7 @@ public class VentanaCliente extends Application {
         try {
             socket = new Socket("localhost", 5000);
             controlador.setSocket(socket);
-            gestionClientes = new GestionClientes();
+            gestionClientes = new GeneracionClientes();
             gestionarConexion = new GestionarConexionPrincipal(socket, controlador);
 
         } catch (IOException e) {
