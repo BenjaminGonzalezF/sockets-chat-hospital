@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
 <?import javafx.scene.web.WebView?>
-
-<!-- Agregamos CheckBox -->
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="1127.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ControladorVistaAdmision">
    <children>
       <BorderPane prefHeight="698.0" prefWidth="1127.0">
          <right>
-<ScrollPane prefHeight="466.0" prefWidth="246.0" BorderPane.alignment="CENTER">
+            <ScrollPane prefHeight="466.0" prefWidth="246.0" BorderPane.alignment="CENTER">
                <content>
                   <TableView fx:id="tablaUsuariosOnline" prefHeight="557.0" prefWidth="243.0">
                      <columns>
@@ -33,77 +32,66 @@
             </ScrollPane>
          </right>
          <top>
-            <Pane prefHeight="139.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="139.0" prefWidth="1127.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
                <children>
-                 
-                  <CheckBox layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Pabellon" />
-                  <CheckBox layoutX="147.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Auxiliares" />
-                  <CheckBox layoutX="294.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Exámenes" />
-                  <CheckBox layoutX="441.0" layoutY="59.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="147.0" text="Admisión" />
-                  <Circle fill="DODGERBLUE" layoutX="884.0" layoutY="73.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Label layoutX="864.0" layoutY="61.0" text="Usuario" />
-                  <Button layoutX="969.0" layoutY="49.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Salir" />
-                  <Pane prefHeight="139.0" prefWidth="1127.0" style="-fx-background-color: #FFFFFF;">
+                  <Button fx:id="btnSalaAdmision" layoutX="33.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAdmision" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Admision" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Label layoutX="993.0" layoutY="34.0" text="Usuario">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Button layoutX="970.0" layoutY="77.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: FF3A3A;" text="Salir" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Button>
+                  <Pane layoutX="681.0" layoutY="10.0" prefHeight="120.0" prefWidth="149.0">
                      <children>
-                        <Button fx:id="btnSalaAdmision" layoutX="501.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAdmision" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Admision" textFill="WHITE">
+                        <Button layoutX="31.0" layoutY="84.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #27A7E7;" text="Enviar" textFill="WHITE">
                            <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="993.0" layoutY="34.0" text="Usuario">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="970.0" layoutY="77.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: FF3A3A;" text="Salir" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Pane layoutX="681.0" layoutY="10.0" prefHeight="120.0" prefWidth="149.0">
-                           <children>
-                              <Button layoutX="31.0" layoutY="84.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #27A7E7;" text="Enviar" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label layoutX="29.0" layoutY="22.0" text="Enviar Mensaje a:" />
-                              <TextField layoutX="20.0" layoutY="46.0" prefHeight="28.0" prefWidth="111.0" />
-                           </children>
-                        </Pane>
-                        <ImageView fitHeight="123.0" fitWidth="131.0" layoutX="847.0" layoutY="6.0" preserveRatio="true">
-                           <image>
-                              <Image url="@images/user.png" />
-                           </image>
-                        </ImageView>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Label layoutX="29.0" layoutY="22.0" text="Enviar Mensaje a:" />
+                        <TextField layoutX="20.0" layoutY="46.0" prefHeight="28.0" prefWidth="111.0" />
                      </children>
                   </Pane>
+                  <ImageView fitHeight="123.0" fitWidth="131.0" layoutX="847.0" layoutY="6.0" preserveRatio="true">
+                     <image>
+                        <Image url="@images/user.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </top>
-         <center>
-            <ScrollPane prefHeight="294.0" prefWidth="857.0" BorderPane.alignment="CENTER">
-               <content>
-                  <WebView fx:id="mensajes" prefHeight="384.0" prefWidth="878.0" />
-               </content>
-            </ScrollPane>
-         </center>
-         <bottom>
-            <HBox prefHeight="174.0" prefWidth="926.0" BorderPane.alignment="CENTER">
+         <left>
+            <FlowPane prefHeight="559.0" prefWidth="839.0" BorderPane.alignment="CENTER">
                <children>
-                  <HTMLEditor fx:id="mensajeAEnviar" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="174.0" prefWidth="943.0" />
-                  <Pane prefHeight="174.0" prefWidth="119.0" />
-                  <Pane prefHeight="174.0" prefWidth="246.0">
+                  <ScrollPane prefHeight="393.0" prefWidth="840.0">
+                     <content>
+                        <WebView fx:id="mensajes" prefHeight="391.0" prefWidth="843.0" />
+                     </content>
+                  </ScrollPane>
+                  <FlowPane prefHeight="162.0" prefWidth="825.0">
                      <children>
-                        <Button id="btnEnviarMensaje" layoutY="57.0" mnemonicParsing="false" onAction="#enviarMensaje" prefHeight="60.0" prefWidth="110.0" style="-fx-background-color: #27A7E7;" text="Enviar" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font></Button>
+                        <HBox prefHeight="164.0" prefWidth="854.0">
+                           <children>
+                              <HTMLEditor fx:id="mensajeAEnviar" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="164.0" prefWidth="731.0" style="-fx-background-color: #FFFFFF;" />
+                              <Pane prefHeight="164.0" prefWidth="123.0">
+                                 <children>
+                                    <Button id="btnEnviarMensaje" layoutX="28.0" layoutY="56.0" mnemonicParsing="false" onAction="#enviarMensaje" prefHeight="53.0" prefWidth="103.0" style="-fx-background-color: #27A7E7;" text="Enviar" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Button>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
                      </children>
-                  </Pane>
+                  </FlowPane>
                </children>
-            </HBox>
-         </bottom>
+            </FlowPane>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>

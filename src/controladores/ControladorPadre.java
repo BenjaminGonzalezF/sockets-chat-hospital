@@ -184,4 +184,10 @@ public class ControladorPadre {
         actualizarMensajes("");
     }
 
+    @FXML
+    private void cambiarASalaPabellon() {
+        salaActual = "salaPabellon";
+        actualizarMensajes("");
+    }
+
 }
