@@ -7,7 +7,7 @@ public class EjecutoraBD {
         Connection con = ConexionBD.establecerConexion();
         if (con != null) {
             CreacionBD.verificarYCrearBaseDeDatos(con);
-            GestionBD.insertarCliente(con, "correo5@example.com", "contrasena2", "Nombre Cliente 2", "Rol Cliente");
+            GestionBD.insertarCliente(con, "correo5@example.com", "contrasena2", "Nombre Cliente 2", "Rol Cliente"); // Rol: Admin, funcionario, medico  , pabellon auxiliar, admisión, examenes
             GestionBD.mostrarClientes(con);
             ConexionBD.cerrarConexion(con);
         }
