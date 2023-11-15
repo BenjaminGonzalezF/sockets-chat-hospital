@@ -170,7 +170,7 @@ public class ControladorPadre {
     }
 
     @FXML
-    private void cambiarASalaAuxiliares() {
+    private void cambiarASalaAuxiliar() {
         salaActual = "salaAuxiliares";
         actualizarMensajes("");
     }

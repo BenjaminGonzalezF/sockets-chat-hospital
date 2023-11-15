@@ -38,7 +38,7 @@
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="btnSalaAuxiliares" layoutX="189.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAuxiliares" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Auxiliares" textFill="WHITE">
+                  <Button fx:id="btnSalaAuxiliares" layoutX="189.0" layoutY="59.0" mnemonicParsing="false" onAction="#cambiarASalaAuxiliar" prefHeight="63.0" prefWidth="147.0" style="-fx-background-color: #27A7E7;" text="Auxiliares" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font></Button>
