@@ -1,3 +1,5 @@
+#Aplicación de escritorio para gestionar un sitema de chats de un hospital mediante sockets.
+
 ##Dependencias necesarias:
 
 java version "20.0.1" 2023-04-18
